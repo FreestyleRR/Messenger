@@ -9,21 +9,31 @@
 /* Begin PBXBuildFile section */
 		C346FEF126B053AA00646D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C346FEF026B053AA00646D38 /* AppDelegate.swift */; };
 		C346FEF326B053AA00646D38 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C346FEF226B053AA00646D38 /* SceneDelegate.swift */; };
-		C346FEF526B053AA00646D38 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C346FEF426B053AA00646D38 /* ViewController.swift */; };
+		C346FEF526B053AA00646D38 /* ConversationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C346FEF426B053AA00646D38 /* ConversationController.swift */; };
 		C346FEF826B053AA00646D38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C346FEF626B053AA00646D38 /* Main.storyboard */; };
 		C346FEFA26B053AB00646D38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C346FEF926B053AB00646D38 /* Assets.xcassets */; };
 		C346FEFD26B053AB00646D38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C346FEFB26B053AB00646D38 /* LaunchScreen.storyboard */; };
+		C346FF0C26B0563900646D38 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C346FF0B26B0563900646D38 /* LoginViewController.swift */; };
+		C346FF0E26B0566F00646D38 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C346FF0D26B0566F00646D38 /* RegisterViewController.swift */; };
+		C346FF1026B0567A00646D38 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C346FF0F26B0567A00646D38 /* PhotoViewController.swift */; };
+		C346FF1226B056AE00646D38 /* NewConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C346FF1126B056AE00646D38 /* NewConversationViewController.swift */; };
+		C346FF1426B056EB00646D38 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C346FF1326B056EB00646D38 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C346FEED26B053AA00646D38 /* Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C346FEF026B053AA00646D38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C346FEF226B053AA00646D38 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C346FEF426B053AA00646D38 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C346FEF426B053AA00646D38 /* ConversationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationController.swift; sourceTree = "<group>"; };
 		C346FEF726B053AA00646D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C346FEF926B053AB00646D38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C346FEFC26B053AB00646D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C346FEFE26B053AB00646D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C346FF0B26B0563900646D38 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C346FF0D26B0566F00646D38 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		C346FF0F26B0567A00646D38 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		C346FF1126B056AE00646D38 /* NewConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationViewController.swift; sourceTree = "<group>"; };
+		C346FF1326B056EB00646D38 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +66,68 @@
 		C346FEEF26B053AA00646D38 /* Messenger */ = {
 			isa = PBXGroup;
 			children = (
-				C346FEF026B053AA00646D38 /* AppDelegate.swift */,
-				C346FEF226B053AA00646D38 /* SceneDelegate.swift */,
-				C346FEF426B053AA00646D38 /* ViewController.swift */,
-				C346FEF626B053AA00646D38 /* Main.storyboard */,
-				C346FEF926B053AB00646D38 /* Assets.xcassets */,
-				C346FEFB26B053AB00646D38 /* LaunchScreen.storyboard */,
+				C346FF0926B0548C00646D38 /* Models */,
+				C346FF0826B0548100646D38 /* Views */,
+				C346FF0726B0547900646D38 /* Resourese */,
+				C346FF0626B0546F00646D38 /* ViewModels */,
+				C346FF0426B0545600646D38 /* Controllers */,
 				C346FEFE26B053AB00646D38 /* Info.plist */,
 			);
 			path = Messenger;
+			sourceTree = "<group>";
+		};
+		C346FF0426B0545600646D38 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C346FEF426B053AA00646D38 /* ConversationController.swift */,
+				C346FF1326B056EB00646D38 /* ProfileViewController.swift */,
+				C346FF0B26B0563900646D38 /* LoginViewController.swift */,
+				C346FF0D26B0566F00646D38 /* RegisterViewController.swift */,
+				C346FF0F26B0567A00646D38 /* PhotoViewController.swift */,
+				C346FF1126B056AE00646D38 /* NewConversationViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C346FF0626B0546F00646D38 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		C346FF0726B0547900646D38 /* Resourese */ = {
+			isa = PBXGroup;
+			children = (
+				C346FEF026B053AA00646D38 /* AppDelegate.swift */,
+				C346FEF226B053AA00646D38 /* SceneDelegate.swift */,
+			);
+			path = Resourese;
+			sourceTree = "<group>";
+		};
+		C346FF0826B0548100646D38 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C346FF0A26B0551600646D38 /* Storyboards */,
+				C346FEF926B053AB00646D38 /* Assets.xcassets */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C346FF0926B0548C00646D38 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C346FF0A26B0551600646D38 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				C346FEF626B053AA00646D38 /* Main.storyboard */,
+				C346FEFB26B053AB00646D38 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,9 +200,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C346FEF526B053AA00646D38 /* ViewController.swift in Sources */,
+				C346FF0C26B0563900646D38 /* LoginViewController.swift in Sources */,
+				C346FF1226B056AE00646D38 /* NewConversationViewController.swift in Sources */,
+				C346FF0E26B0566F00646D38 /* RegisterViewController.swift in Sources */,
+				C346FEF526B053AA00646D38 /* ConversationController.swift in Sources */,
 				C346FEF126B053AA00646D38 /* AppDelegate.swift in Sources */,
 				C346FEF326B053AA00646D38 /* SceneDelegate.swift in Sources */,
+				C346FF1426B056EB00646D38 /* ProfileViewController.swift in Sources */,
+				C346FF1026B0567A00646D38 /* PhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +357,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RF67J52FP5;
 				INFOPLIST_FILE = Messenger/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -308,6 +377,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RF67J52FP5;
 				INFOPLIST_FILE = Messenger/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
