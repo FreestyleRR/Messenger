@@ -14,7 +14,6 @@
 		C346FEFA26B053AB00646D38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C346FEF926B053AB00646D38 /* Assets.xcassets */; };
 		C346FEFD26B053AB00646D38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C346FEFB26B053AB00646D38 /* LaunchScreen.storyboard */; };
 		C346FF0C26B0563900646D38 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C346FF0B26B0563900646D38 /* LoginViewController.swift */; };
-		C346FF0E26B0566F00646D38 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C346FF0D26B0566F00646D38 /* RegisterViewController.swift */; };
 		C346FF1026B0567A00646D38 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C346FF0F26B0567A00646D38 /* PhotoViewController.swift */; };
 		C346FF1226B056AE00646D38 /* NewConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C346FF1126B056AE00646D38 /* NewConversationViewController.swift */; };
 		C346FF1426B056EB00646D38 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C346FF1326B056EB00646D38 /* ProfileViewController.swift */; };
@@ -30,7 +29,6 @@
 		C346FEFC26B053AB00646D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C346FEFE26B053AB00646D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C346FF0B26B0563900646D38 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		C346FF0D26B0566F00646D38 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		C346FF0F26B0567A00646D38 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		C346FF1126B056AE00646D38 /* NewConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationViewController.swift; sourceTree = "<group>"; };
 		C346FF1326B056EB00646D38 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -81,8 +79,7 @@
 			children = (
 				C346FEF426B053AA00646D38 /* ConversationController.swift */,
 				C346FF1326B056EB00646D38 /* ProfileViewController.swift */,
-				C346FF0B26B0563900646D38 /* LoginViewController.swift */,
-				C346FF0D26B0566F00646D38 /* RegisterViewController.swift */,
+				C346FF1526B057D200646D38 /* Login */,
 				C346FF0F26B0567A00646D38 /* PhotoViewController.swift */,
 				C346FF1126B056AE00646D38 /* NewConversationViewController.swift */,
 			);
@@ -128,6 +125,14 @@
 				C346FEFB26B053AB00646D38 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		C346FF1526B057D200646D38 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				C346FF0B26B0563900646D38 /* LoginViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,7 +207,6 @@
 			files = (
 				C346FF0C26B0563900646D38 /* LoginViewController.swift in Sources */,
 				C346FF1226B056AE00646D38 /* NewConversationViewController.swift in Sources */,
-				C346FF0E26B0566F00646D38 /* RegisterViewController.swift in Sources */,
 				C346FEF526B053AA00646D38 /* ConversationController.swift in Sources */,
 				C346FEF126B053AA00646D38 /* AppDelegate.swift in Sources */,
 				C346FEF326B053AA00646D38 /* SceneDelegate.swift in Sources */,
