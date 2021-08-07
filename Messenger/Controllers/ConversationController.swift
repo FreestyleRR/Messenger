@@ -8,17 +8,18 @@
 import UIKit
 
 class ConversationController: UIViewController {
-
+    
+    private var users = [String: String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         let isLoggedIn = UserDefaults.standard.bool(forKey: "logged_in")
-
+        
         if !isLoggedIn {
             let vc = LoginViewController()
             let nav = UINavigationController(rootViewController: vc)
@@ -26,6 +27,5 @@ class ConversationController: UIViewController {
             present(nav, animated: true)
         }
     }
-
 }
 
