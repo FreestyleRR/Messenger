@@ -12,8 +12,6 @@ class FriendsViewController: UIViewController {
     
     var reuseId = "cell"
     
-    var newUser = true
-    
     @IBOutlet var tableView: UITableView!
     
     var users = [[String: String]]()
@@ -21,18 +19,16 @@ class FriendsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        creatingUser()
         
+        setupUI()
+        
+    }
+    
+    private func setupUI() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseId)
         tableView.delegate = self
         tableView.dataSource = self
         title = name
-        
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableView.frame = view.bounds
     }
     
     func creatingUser(){
@@ -52,23 +48,14 @@ class FriendsViewController: UIViewController {
 extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-//        if newUser {
-//            return users.count - 1
-//        }
         return users.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let id = UserDefaults.standard.value(forKey: "uid") as! String
-//        let currentId = users[indexPath.row]["uid"]
-//        if id == currentId {
-//
-//        } else {
+        
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath)
             cell.textLabel?.text = users[indexPath.row]["name"]
             return cell
-//        }
-//        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { tableView.deselectRow(at: indexPath, animated: true)

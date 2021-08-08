@@ -34,11 +34,12 @@ class ChatViewController: UIViewController {
         
         setupUI()
         
-        let tapGR = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardWhenTappedAround))
-        self.view.addGestureRecognizer(tapGR)
     }
     
     private func setupUI() {
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardWhenTappedAround))
+        self.view.addGestureRecognizer(tapGR)
+        
         tableView.register(UINib(nibName: OutcomeCell.reuseId, bundle: nil), forCellReuseIdentifier: OutcomeCell.reuseId)
         tableView.register(UINib(nibName: IncomeCell.reuseId, bundle: nil), forCellReuseIdentifier: IncomeCell.reuseId)
         
@@ -61,6 +62,11 @@ class ChatViewController: UIViewController {
         tableView.reloadData()
     }
     
+    func scrollToLastRow() {
+            let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         let messageIdOne = "\(currentId)_\(friId!)"
         let messageIdTwo = "\(friId!)_\(currentId)"
@@ -76,6 +82,7 @@ class ChatViewController: UIViewController {
                 self.messageId = messageIdOne
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.scrollToLastRow()
                 }
             case .failure(let error):
                 print("failed to get messages: \(error)")
@@ -83,7 +90,8 @@ class ChatViewController: UIViewController {
         })
         
     //MARK: - Chek messages for friId_currentId
-        DatabaseManager.shared.getAllMessagesForConversation(with: currentId, messageID: messageIdTwo, completion: { result in
+        DatabaseManager.shared.getAllMessagesForConversation(with: currentId,
+                                                             messageID: messageIdTwo, completion: { result in
             switch result {
             case .success(let messages):
                 guard !messages.isEmpty else {
@@ -93,6 +101,7 @@ class ChatViewController: UIViewController {
                 self.messageId = messageIdTwo
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.scrollToLastRow()
                 }
             case .failure(let error):
                 print("failed to get messages: \(error)")
@@ -101,13 +110,10 @@ class ChatViewController: UIViewController {
     }
     
     @objc func sendMessage() {
-        guard ((inputTextField.text?.replacingOccurrences(of: " ", with: "").isEmpty) != nil),
-              let text = inputTextField.text else {
-            return
-        }
-        if inputTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            return
-        }
+        guard let text = inputTextField.text,
+              !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+                    return
+                }
         
         let ref = Database.database().reference()
         let mmessage = Message(fromId: currentId,
@@ -160,6 +166,8 @@ class ChatViewController: UIViewController {
                 }
             })
         }
+        
+        dismissKeyboard()
     }
     
     @objc func hideKeyboardWhenTappedAround() {

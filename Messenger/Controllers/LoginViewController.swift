@@ -11,93 +11,33 @@ import FirebaseDatabase
 
 class LoginViewController: UIViewController {
     
-    private let imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "icon")
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
-    
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.clipsToBounds = true
-        return scrollView
-    }()
-    
-    private let nameField: UITextField = {
-        let field = UITextField()
-        field.autocapitalizationType = .none
-        field.autocorrectionType = .no
-        field.returnKeyType = .continue
-        field.layer.cornerRadius = 12
-        field.layer.borderWidth = 1
-        field.layer.borderColor = UIColor.lightGray.cgColor
-        field.placeholder = "Name..."
-        field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
-        field.leftViewMode = .always
-        field.backgroundColor = .white
-        return field
-    }()
-    
-    private let startButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Start", for: .normal)
-        button.backgroundColor = .link
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 12
-        button.layer.masksToBounds = true
-        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
-        return button
-    }()
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var conteiner: UIView!
     
     private var users = [[String: String]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Log in"
-        view.backgroundColor = .white
-        
-        startButton.addTarget(self,
-                              action: #selector(startButtonTapped),
-                              for: .touchUpInside)
-        
-        nameField.delegate = self
-        
-        let tapGR = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardWhenTappedAround))
-        view.addGestureRecognizer(tapGR)
-        
-        //MARK: - Add subviews
-        view.addSubview(scrollView)
-        scrollView.addSubview(imageView)
-        scrollView.addSubview(nameField)
-        scrollView.addSubview(startButton)
+        setupUI()
         
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        scrollView.frame = view.bounds
+    private func setupUI() {
+        title = "Log in"
+        view.backgroundColor = .white
+        nameField.layer.cornerRadius = 12
         
-        let size = scrollView.width/3
-        imageView.frame = CGRect(x: (scrollView.width-size)/2,
-                                 y: 20,
-                                 width: size,
-                                 height: size)
-        
-        nameField.frame = CGRect(x: 30,
-                                 y: imageView.bottom+10,
-                                 width: scrollView.width-60,
-                                 height: 52)
-        
-        startButton.frame = CGRect(x: 30,
-                                   y: nameField.bottom+10,
-                                   width: scrollView.width-60,
-                                   height: 52)
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardWhenTappedAround))
+        view.addGestureRecognizer(tapGR)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         getUsers()
+    }
+    
+    @IBAction func startButton(_ sender: Any) {
+        startButtonTapped()
     }
     
     func getUsers(){
@@ -121,43 +61,30 @@ class LoginViewController: UIViewController {
         }
         
         
-        var user = 0
-        glob: if users.count > 0 {
-            for i in users {
-                if name == i["name"]! {
-                    UserDefaults.standard.setValue(i["uid"], forKey: "uid")
+        let existUser = !users.filter { $0["name"] == name }.isEmpty
+                
+                if existUser {
+                    if let user = users.first(where: { $0["name"] == name }) {
+                        users = users.filter { $0["name"] != name }
+                        UserDefaults.standard.setValue(user["uid"], forKey: "uid")
+                        UserDefaults.standard.setValue(user["name"], forKey: "name")
+                    }
+                } else {
+                    let uID = UUID().uuidString
+                    UserDefaults.standard.setValue(uID, forKey: "uid")
                     UserDefaults.standard.setValue(name, forKey: "name")
-                    users.remove(at: user)
-                    break glob
-                } else {
-                    user += 1
+                    
+                    DatabaseManager.shared.insertUser(
+                        with: ChatUser(
+                            name: name,
+                            uid: uID), completion: { success in
+                            if success {
+                                print("User creating")
+                            } else {
+                                print("User not creating")
+                            }
+                        })
                 }
-            }
-            
-            let uID = UUID().uuidString
-            UserDefaults.standard.setValue(uID, forKey: "uid")
-            UserDefaults.standard.setValue(name, forKey: "name")
-            
-            DatabaseManager.shared.insertUser(with: ChatUser(name: name, uid: uID), completion: { success in
-                if success {
-                    print("User creating")
-                } else {
-                    print("User not creating")
-                }
-            })
-        } else {
-            let uID = UUID().uuidString
-            UserDefaults.standard.setValue(uID, forKey: "uid")
-            UserDefaults.standard.setValue(name, forKey: "name")
-            
-            DatabaseManager.shared.insertUser(with: ChatUser(name: name, uid: uID), completion: { success in
-                if success {
-                    print("User creating")
-                } else {
-                    print("User not creating")
-                }
-            })
-        }
         
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc = storyboard.instantiateViewController(identifier: "FriendsViewController") as! FriendsViewController
@@ -167,12 +94,18 @@ class LoginViewController: UIViewController {
     }
     
     func alertUserStartError() {
-        let alert = UIAlertController(title: "Error",
-                                      message: "You name incorrected",
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel",
-                                      style: .cancel,
-                                      handler: nil))
+        let alert = UIAlertController(
+            title: "Error",
+            message: "You name incorrected",
+            preferredStyle: .alert)
+        alert.addAction(
+            UIAlertAction(
+                title: "Cancel",
+                style: .cancel,
+                handler: nil
+            )
+        )
+        
         present(alert, animated: true)
     }
     
@@ -185,7 +118,6 @@ class LoginViewController: UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-    
 }
 
 extension LoginViewController: UITextFieldDelegate {
