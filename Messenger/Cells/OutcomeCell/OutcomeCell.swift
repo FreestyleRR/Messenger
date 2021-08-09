@@ -27,11 +27,10 @@ class OutcomeCell: UITableViewCell {
         super.layoutSubviews()
         messageContainer.layer.cornerRadius = 10
     }
-    
 }
 
 extension OutcomeCell {
-    func configure(with message: Message) {
+    func configure(with message: MessageModel) {
         messageLabel.text = message.text
     }
 }

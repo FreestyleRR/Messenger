@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class LoginViewController: UIViewController {
+class LoginVC: UIViewController {
     
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var conteiner: UIView!
@@ -75,7 +75,7 @@ class LoginViewController: UIViewController {
                     UserDefaults.standard.setValue(name, forKey: "name")
                     
                     DatabaseManager.shared.insertUser(
-                        with: ChatUser(
+                        with: UserModel(
                             name: name,
                             uid: uID), completion: { success in
                             if success {
@@ -87,7 +87,7 @@ class LoginViewController: UIViewController {
                 }
         
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc = storyboard.instantiateViewController(identifier: "FriendsViewController") as! FriendsViewController
+        let vc = storyboard.instantiateViewController(identifier: "FriendListVC") as! FriendListVC
         vc.users = users
         navigationController?.pushViewController(vc, animated: true)
         nameField.text = ""
@@ -120,7 +120,7 @@ class LoginViewController: UIViewController {
     }
 }
 
-extension LoginViewController: UITextFieldDelegate {
+extension LoginVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == nameField {

@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class FriendsViewController: UIViewController {
+class FriendListVC: UIViewController {
     
     var reuseId = "cell"
     
@@ -45,7 +45,7 @@ class FriendsViewController: UIViewController {
     
 }
 
-extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
+extension FriendListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return users.count
@@ -63,7 +63,7 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
         
         let friendId = users[indexPath.row]["uid"]!
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc = storyboard.instantiateViewController(identifier: "ChatViewController") as! ChatViewController
+        let vc = storyboard.instantiateViewController(identifier: "MessageListVC") as! MessageListVC
         vc.friId = friendId
         vc.navigationItem.largeTitleDisplayMode = .never
         vc.title = users[indexPath.row]["name"]

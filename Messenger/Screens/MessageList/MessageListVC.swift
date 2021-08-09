@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import IQKeyboardManagerSwift
 
-class ChatViewController: UIViewController {
+class MessageListVC: UIViewController {
     
     public static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -19,11 +19,11 @@ class ChatViewController: UIViewController {
         return formatter
     }()
     
-    public var messages = [Message]()
+    public var messages = [MessageModel]()
     
     private let currentId = UserDefaults.standard.value(forKey: "uid") as! String
-    var friId: String!
-    var messageId: String!
+    var friId: String?
+    var messageId: String?
     
     @IBOutlet var container: UIView!
     @IBOutlet var tableView: UITableView!
@@ -63,26 +63,30 @@ class ChatViewController: UIViewController {
     }
     
     func scrollToLastRow() {
-            let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
-            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let messageIdOne = "\(currentId)_\(friId!)"
-        let messageIdTwo = "\(friId!)_\(currentId)"
+        guard let friendID = friId else {
+            return
+        }
+        
+        let messageIdOne = "\(currentId)_\(friendID)"
+        let messageIdTwo = "\(friendID)_\(currentId)"
  
     //MARK: - Chek messages for currentId_friId
-        DatabaseManager.shared.getAllMessagesForConversation(with: currentId, messageID: messageIdOne, completion: { result in
+        DatabaseManager.shared.getAllMessagesForConversation(with: currentId, messageID: messageIdOne, completion: { [weak self] result in
             switch result {
             case .success(let messages):
                 guard !messages.isEmpty else {
                     return
                 }
-                self.messages = messages
-                self.messageId = messageIdOne
+                self?.messages = messages
+                self?.messageId = messageIdOne
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.scrollToLastRow()
+                    self?.tableView.reloadData()
+                    self?.scrollToLastRow()
                 }
             case .failure(let error):
                 print("failed to get messages: \(error)")
@@ -90,18 +94,17 @@ class ChatViewController: UIViewController {
         })
         
     //MARK: - Chek messages for friId_currentId
-        DatabaseManager.shared.getAllMessagesForConversation(with: currentId,
-                                                             messageID: messageIdTwo, completion: { result in
+        DatabaseManager.shared.getAllMessagesForConversation(with: currentId, messageID: messageIdTwo, completion: { [weak self] result in
             switch result {
             case .success(let messages):
                 guard !messages.isEmpty else {
                     return
                 }
-                self.messages = messages
-                self.messageId = messageIdTwo
+                self?.messages = messages
+                self?.messageId = messageIdTwo
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.scrollToLastRow()
+                    self?.tableView.reloadData()
+                    self?.scrollToLastRow()
                 }
             case .failure(let error):
                 print("failed to get messages: \(error)")
@@ -114,34 +117,42 @@ class ChatViewController: UIViewController {
               !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
                     return
                 }
+        guard let friendID = friId else {
+            return
+        }
+       
         
         let ref = Database.database().reference()
-        let mmessage = Message(fromId: currentId,
-                               toId: friId,
+        let mmessage = MessageModel(fromId: currentId,
+                               toId: friendID,
                                text: text,
                                sentDate: Date())
         
         let messageDate = mmessage.sentDate
-        let dateString = ChatViewController.dateFormatter.string(from: messageDate)
+        let dateString = MessageListVC.dateFormatter.string(from: messageDate)
         
         let conversationData: [String: Any] = [
             "fromId": currentId,
-            "toId": friId!,
+            "toId": friendID,
             "date": dateString,
             "message": text
         ]
         //MARK: - Send and check messages
-        if messageId == ("\(currentId)_\(friId!)") {
-        ref.child("conversation_\(self.currentId)_\(self.friId!)/messages").observeSingleEvent(of: .value, with: { snapshot in
+        if messageId == ("\(currentId)_\(friendID)") {
+        ref.child("conversation_\(currentId)_\(friendID)/messages").observeSingleEvent(of: .value, with: { [weak self] snapshot in
+            guard let strongSelf = self else {
+                return
+            }
+            
             if var conversation = snapshot.value as? [[String: Any]] {
                 conversation.append(conversationData)
-                ref.child("conversation_\(self.messageId!)/messages").setValue(conversation) { error, _ in
+                ref.child("conversation_\(strongSelf.messageId!)/messages").setValue(conversation) { error, _ in
                     guard error == nil else {
                         return
                     }
                 }
             } else {
-                ref.child("conversation_\(self.currentId)_\(self.friId!)/messages").setValue([conversationData]) { error, _ in
+                ref.child("conversation_\(strongSelf.currentId)_\(friendID)/messages").setValue([conversationData]) { error, _ in
                     guard error == nil else {
                         return
                     }
@@ -149,16 +160,20 @@ class ChatViewController: UIViewController {
             }
         })
         } else {
-            ref.child("conversation_\(self.friId!)_\(self.currentId)/messages").observeSingleEvent(of: .value, with: { snapshot in
+            ref.child("conversation_\(friendID)_\(currentId)/messages").observeSingleEvent(of: .value, with: { [weak self] snapshot in
+                guard let strongSelf = self else {
+                    return
+                }
+                
                 if var conversation = snapshot.value as? [[String: Any]] {
                     conversation.append(conversationData)
-                    ref.child("conversation_\(self.messageId!)/messages").setValue(conversation) { error, _ in
+                    ref.child("conversation_\(strongSelf.messageId!)/messages").setValue(conversation) { error, _ in
                         guard error == nil else {
                             return
                         }
                     }
                 } else {
-                    ref.child("conversation_\(self.friId!)_\(self.currentId)/messages").setValue([conversationData]) { error, _ in
+                    ref.child("conversation_\(friendID)_\(strongSelf.currentId)/messages").setValue([conversationData]) { error, _ in
                         guard error == nil else {
                             return
                         }
@@ -171,7 +186,7 @@ class ChatViewController: UIViewController {
     }
     
     @objc func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
@@ -183,7 +198,7 @@ class ChatViewController: UIViewController {
 
 // MARK: - UITextFieldDelegate
 
-extension ChatViewController: UITextFieldDelegate {
+extension MessageListVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return true
@@ -192,13 +207,14 @@ extension ChatViewController: UITextFieldDelegate {
 
 // MARK: - UITableViewDataSource
 
-extension ChatViewController: UITableViewDataSource {
+extension MessageListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let index = messages[indexPath.row].fromId
+        
         if index == currentId {
             let cell = tableView.dequeueReusableCell(withIdentifier: IncomeCell.reuseId, for: indexPath) as! IncomeCell
             cell.configure(with: messages[indexPath.row])

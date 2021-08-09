@@ -31,7 +31,7 @@ class IncomeCell: UITableViewCell {
 }
 
 extension IncomeCell {
-    func configure(with message: Message) {
+    func configure(with message: MessageModel) {
         messageLabel.text = message.text
     }
 }

@@ -14,7 +14,7 @@ final class DatabaseManager {
     
     private let database = Database.database().reference()
     
-    public func insertUser(with user: ChatUser, completion: @escaping (Bool) -> Void) {
+    public func insertUser(with user: UserModel, completion: @escaping (Bool) -> Void) {
         self.database.child(user.uid).setValue([
             "user_name": user.name,
             "user_id": user.uid
@@ -76,21 +76,21 @@ final class DatabaseManager {
 
 extension DatabaseManager {
     
-    public func getAllMessagesForConversation(with id: String, messageID: String, completion: @escaping (Result<[Message], Error>) -> Void) {
+    public func getAllMessagesForConversation(with id: String, messageID: String, completion: @escaping (Result<[MessageModel], Error>) -> Void) {
         database.child("conversation_\(messageID)/messages").observe(.value, with: { snapshot in
             guard let value = snapshot.value as? [[String: Any]] else{
                 completion(.failure(DatabaseError.fatalError))
                 return
             }
-            let messages: [Message] = value.compactMap({ dictionary in
+            let messages: [MessageModel] = value.compactMap({ dictionary in
                 guard let fromId = dictionary["fromId"] as? String,
                       let content = dictionary["message"] as? String,
                       let toId = dictionary["toId"] as? String,
                       let dateString = dictionary["date"] as? String,
-                      let date = ChatViewController.dateFormatter.date(from: dateString) else {
+                      let date = MessageListVC.dateFormatter.date(from: dateString) else {
                     return nil
                 }
-                return Message(fromId: fromId,
+                return MessageModel(fromId: fromId,
                                toId: toId,
                                text: content,
                                sentDate: date)

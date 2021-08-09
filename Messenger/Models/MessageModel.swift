@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Message {
+struct MessageModel {
     public var fromId: String
     public var toId: String
     public var text: String?

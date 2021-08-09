@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ChatUser {
+struct UserModel {
     var name: String
     var uid: String
 }
