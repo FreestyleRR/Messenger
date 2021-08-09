@@ -11,6 +11,8 @@ import FirebaseDatabase
 
 class LoginVC: UIViewController {
     
+    var viewModel: LoginViewModelType!
+    
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var conteiner: UIView!
     
