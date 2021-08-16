@@ -8,7 +8,20 @@
 import Foundation
 
 
-class AppCoordinator {
+protocol Coordinator {
+    var childCoordinators: [Coordinator] { get }
+    func start()
+}
+
+final class AppCoordinator: Coordinator {
+    
+    
+    private(set) var childCoordinators: [Coordinator] = []
+    
+    func start() {
+        
+    }
+    
     
     
     

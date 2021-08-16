@@ -17,7 +17,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var conteiner: UIView!
     @IBOutlet weak var buttonStart: UIButton!
     
-    private var users = [[String: String]]()
+    private var users = [[LoginViewModel]]()
     
     deinit {
         print("SignInVC - deinit")
@@ -40,18 +40,6 @@ class LoginVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        getUsers()
-    }
-    
-    func getUsers(){
-        DatabaseManager.shared.getAllUsers(completion: { [weak self] result in
-            switch result {
-            case .success(let usersCollection):
-                self?.users = usersCollection
-            case .failure(let error):
-                print("Failed to get usres: \(error)")
-            }
-        })
     }
     
     @objc func hideKeyboardWhenTappedAround() {
@@ -83,39 +71,19 @@ extension LoginVC {
     }
     
     private func validate() {
-        let name = nameField.text ?? ""
+        let userName = nameField.text ?? ""
         
-        if let errorStr = viewModel.validate(name: name) {
+        if let errorStr = viewModel.validate(name: userName) {
             AlertHelper.showAlert(errorStr)
             return
         }
         
         view.endEditing(true)
-        signIn(name: name)
+        signIn(name: userName)
     }
     
     private func signIn(name: String) {
-        let existUser = !users.filter { $0["name"] == name }.isEmpty
         
-        if existUser {
-            if let user = users.first(where: { $0["name"] == name }) {
-                users = users.filter { $0["name"] != name }
-                UserDefaults.standard.setValue(user["uid"], forKey: "uid")
-                UserDefaults.standard.setValue(user["name"], forKey: "name")
-            }
-        } else {
-            let uID = UUID().uuidString
-            UserDefaults.standard.setValue(uID, forKey: "uid")
-            UserDefaults.standard.setValue(name, forKey: "name")
-            
-            DatabaseManager.shared.insertUser(with: UserModel(name: name, uid: uID), completion: { success in
-                if success {
-                    print("User creating")
-                } else {
-                    print("User not creating")
-                }
-            })
-        }
     }
     
 }

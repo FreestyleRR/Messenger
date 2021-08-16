@@ -12,6 +12,8 @@ class FriendListVC: UIViewController {
     
     var reuseId = "cell"
     
+    var viewModel: FriendListViewModelType!
+    
     @IBOutlet var tableView: UITableView!
     
     var users = [[String: String]]()

@@ -12,5 +12,6 @@ extension UIViewController {
     
     class var identifier: String {
         let name = String(describing: self)
+        return name
     }
 }

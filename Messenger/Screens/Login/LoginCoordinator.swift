@@ -30,7 +30,7 @@ class LoginCoordinator: LoginCoordinatorType {
         self.transitions = transitions
         self.serviceHolder = serviceHolder
         
-        controller?.viewModel = LoginViewModel(self, serviceHolder: serviceHolder)
+//        controller?.viewModel = LoginViewModel(self, serviceHolder: serviceHolder)
     }
     
     func start() {
@@ -41,6 +41,7 @@ class LoginCoordinator: LoginCoordinatorType {
     
     
     func signUp() {
+        
         transitions?.signUp()
     }
     
