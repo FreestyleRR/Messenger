@@ -13,22 +13,18 @@ protocol FriendListCoordinatorTransitions: class {
 
 protocol FriendListCoordinatorType {
     
+    func start()
 }
 
 class FriendListCoordinator: FriendListCoordinatorType {
     
-    
     private weak var navigationController: UINavigationController?
-    private weak var transitions: FriendListCoordinatorTransitions?
-    private weak var controller = Storyboard.friendList.controller(withClass: FriendListVC.self)
-    private var serviceHolder: ServiceHolder
+    private weak var controller = Storyboard.main.controller(withClass: FriendListVC.self)
+    weak var transitions: FriendListCoordinatorTransitions?
     
-    init(navigationController: UINavigationController?, transitions: FriendListCoordinatorTransitions?, serviceHolder: ServiceHolder) {
+    init(navigationController: UINavigationController?) {
         self.navigationController = navigationController
-        self.transitions = transitions
-        self.serviceHolder = serviceHolder
-        
-        controller?.viewModel = FriendListViewModel(self, serviceHolder: serviceHolder)
+        controller?.viewModel = FriendListViewModel(self)
     }
     
     func start() {
@@ -38,6 +34,6 @@ class FriendListCoordinator: FriendListCoordinatorType {
     }
     
     deinit {
-        print("ReadingListCoordinator - deinit")
+        print("\(self) - \(#function)")
     }
 }

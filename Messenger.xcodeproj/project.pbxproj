@@ -110,13 +110,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		C32882D126C1629E00CB4E72 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		C32882D226C18A0900CB4E72 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,20 +206,18 @@
 			isa = PBXGroup;
 			children = (
 				C346FEF926B053AB00646D38 /* Assets.xcassets */,
+				C346FEF026B053AA00646D38 /* AppDelegate.swift */,
+				C346FEF226B053AA00646D38 /* SceneDelegate.swift */,
 				C32882D226C18A0900CB4E72 /* Coordinators */,
 				C346FF0A26B0551600646D38 /* Storyboards */,
-				C32882D126C1629E00CB4E72 /* ViewModels */,
 				C32882EE26C1AA6500CB4E72 /* Helpers */,
 				C32882D326C18A1100CB4E72 /* Screens */,
 				C332D80426B7F653006D7297 /* Cells */,
 				C32882E726C198B500CB4E72 /* Extencion */,
 				C346FF0926B0548C00646D38 /* Models */,
-				C346FF0826B0548100646D38 /* Views */,
 				C346FF0726B0547900646D38 /* Services */,
 				C346FEFE26B053AB00646D38 /* Info.plist */,
 				C34C0F3F26B1923500790E92 /* GoogleService-Info.plist */,
-				C346FEF226B053AA00646D38 /* SceneDelegate.swift */,
-				C346FEF026B053AA00646D38 /* AppDelegate.swift */,
 			);
 			path = Messenger;
 			sourceTree = "<group>";
@@ -238,13 +229,6 @@
 				C32882EC26C19DA700CB4E72 /* ServicesHolder.swift */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		C346FF0826B0548100646D38 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		C346FF0926B0548C00646D38 /* Models */ = {

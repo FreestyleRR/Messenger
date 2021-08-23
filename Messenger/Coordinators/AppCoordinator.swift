@@ -5,24 +5,39 @@
 //  Created by Паша Шарков on 09.08.2021.
 //
 
-import Foundation
+import UIKit
 
-
-protocol Coordinator {
-    var childCoordinators: [Coordinator] { get }
-    func start()
-}
-
-final class AppCoordinator: Coordinator {
+class AppCoordinator {
+    var window: UIWindow
     
+    private var rootController = UINavigationController()
     
-    private(set) var childCoordinators: [Coordinator] = []
+    private var loginCoordinator: LoginCoordinatorType?
+    private var friendCoordinator: FriendListCoordinatorType?
     
-    func start() {
+    init(window: UIWindow) {
+        self.window = window
         
+        self.window.rootViewController = rootController
+        self.window.makeKeyAndVisible()
     }
     
+    func startLogin() {
+        loginCoordinator = LoginCoordinator(navigationController: rootController)
+        loginCoordinator?.transitions = self
+        loginCoordinator?.start()
+    }
     
-    
-    
+    func startFriends() {
+        friendCoordinator = FriendListCoordinator(navigationController: rootController)
+        friendCoordinator?.start()
+    }
+}
+
+// MARK: - LoginCoordinatorTransitions
+
+extension AppCoordinator: LoginCoordinatorTransitions {
+    func didSignUp() {
+        startFriends()
+    }
 }

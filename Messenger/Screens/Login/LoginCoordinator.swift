@@ -9,28 +9,27 @@ import Foundation
 import UIKit
 
 protocol LoginCoordinatorTransitions: class {
-    
-    func signUp()
+    func didSignUp()
 }
 
 protocol LoginCoordinatorType {
- 
-    func signUp()
+    var transitions: LoginCoordinatorTransitions? { get set }
+    
+    func start()
+    func didSignUp()
 }
 
 class LoginCoordinator: LoginCoordinatorType {
     
     private weak var navigationController: UINavigationController?
-    private weak var transitions: LoginCoordinatorTransitions?
-    private weak var controller = Storyboard.login.controller(withClass: LoginVC.self)
-    private var serviceHolder: ServiceHolder
+    private weak var controller: LoginVC? = Storyboard.main.instantiateViewController()
+    weak var transitions: LoginCoordinatorTransitions?
     
-    init(navigationController: UINavigationController?, transitions: LoginCoordinatorTransitions?, serviceHolder: ServiceHolder) {
+    private let rootNavigation = UINavigationController()
+    
+    init(navigationController: UINavigationController?) {
         self.navigationController = navigationController
-        self.transitions = transitions
-        self.serviceHolder = serviceHolder
-        
-//        controller?.viewModel = LoginViewModel(self, serviceHolder: serviceHolder)
+        controller?.viewModel = LoginViewModel(self)
     }
     
     func start() {
@@ -39,10 +38,7 @@ class LoginCoordinator: LoginCoordinatorType {
         }
     }
     
-    
-    func signUp() {
-        
-        transitions?.signUp()
+    func didSignUp() {
+        transitions?.didSignUp()
     }
-    
 }

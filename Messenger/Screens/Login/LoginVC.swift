@@ -17,17 +17,14 @@ class LoginVC: UIViewController {
     @IBOutlet weak var conteiner: UIView!
     @IBOutlet weak var buttonStart: UIButton!
     
-    private var users = [[LoginViewModel]]()
-    
-    deinit {
-        print("SignInVC - deinit")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
-        
+        print(viewModel)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     private func setupUI() {
@@ -35,55 +32,51 @@ class LoginVC: UIViewController {
         view.backgroundColor = .white
         nameField.layer.cornerRadius = 12
         
-        let tapGR = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardWhenTappedAround))
-        view.addGestureRecognizer(tapGR)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    @IBAction func btnSignInClicked(_ sender: UIButton) {
+        validate()
     }
     
-    @objc func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
+    @objc
+    private func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    deinit {
+        print("\(self) - \(#function)")
+    }
 }
+
+// MARK: - UITextFieldDelegate
 
 extension LoginVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == nameField {
-            nameField.resignFirstResponder()
-            validate()
-        }
+        textField.resignFirstResponder()
         return true
     }
 }
 
 extension LoginVC {
     
-    @IBAction func btnSignInClicked(_ sender: UIButton) {
-        validate()
-    }
-    
     private func validate() {
-        let userName = nameField.text ?? ""
+        let username = nameField.text ?? ""
+        print(viewModel)
         
-        if let errorStr = viewModel.validate(name: userName) {
-            AlertHelper.showAlert(errorStr)
-            return
+        if viewModel.isValid(username: username) {
+            signIn(username: username)
         }
-        
-        view.endEditing(true)
-        signIn(name: userName)
     }
     
-    private func signIn(name: String) {
-        
+    private func signIn(username: String) {
+        viewModel.signUp(username: username) { [weak self] in
+            DispatchQueue.main.async {
+                self?.viewModel.didSignUp()
+            }
+        }
     }
-    
 }
