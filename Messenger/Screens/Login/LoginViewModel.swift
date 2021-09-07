@@ -43,7 +43,6 @@ class LoginViewModel: LoginViewModelType {
     func signUp(username: String, completion: @escaping (() -> Void)) {
         
         let existUser = !users.filter { $0["name"] == username }.isEmpty
-        print(users)
         
         if existUser {
             let user = users.first { $0["name"] == username }

@@ -59,7 +59,7 @@ final class DatabaseManager {
     }
     
     public func getAllUsers(completion: @escaping (Result<[[String: String]], Error>) -> Void) {
-        database.child("users").observe(.value, with: { snapshot in
+        database.child("users").getData(completion: { error, snapshot in
             guard let value = snapshot.value as? [[String: String]] else {
                 completion(.failure(DatabaseError.fatalError))
                 return
