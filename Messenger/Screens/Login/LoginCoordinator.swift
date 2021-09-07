@@ -26,7 +26,6 @@ class LoginCoordinator: LoginCoordinatorType {
     private weak var navigationController: UINavigationController?
     private weak var controller: LoginVC? = Storyboard.main.instantiateViewController()
     weak var transitions: LoginCoordinatorTransitions?
-//    var loginViewModel: LoginViewModel!
     var users: [[String : String]]?
     
     private let rootNavigation = UINavigationController()
@@ -43,7 +42,6 @@ class LoginCoordinator: LoginCoordinatorType {
     }
     
     func didSignUp() {
-//        users = loginViewModel.users
         transitions?.didSignUp()
     }
 }

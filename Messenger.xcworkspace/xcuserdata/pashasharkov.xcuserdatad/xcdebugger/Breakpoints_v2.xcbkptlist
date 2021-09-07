@@ -7,107 +7,63 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4403D482-4BBD-4059-AB45-A9AD711DB2C1"
+            uuid = "1C4CFB3C-F9B3-4887-B61F-E5DB8416DFE5"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Messenger/Screens/Login/LoginVC.swift"
+            filePath = "Messenger/Screens/Login/LoginViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "13"
-            endingLineNumber = "13"
-            landmarkName = "LoginVC"
-            landmarkType = "3">
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "signUp(username:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8E82349F-4D73-427B-8DA3-CC0731301574"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Messenger/Screens/Login/LoginViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "signUp(username:completion:)"
+            landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "4403D482-4BBD-4059-AB45-A9AD711DB2C1 - 689d2341589876c3"
+                  uuid = "8E82349F-4D73-427B-8DA3-CC0731301574 - 614285a9c7bf6fc0"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Messenger.LoginVC.viewModel.getter : Swift.Optional&lt;Messenger.LoginViewModelType&gt;"
+                  symbolName = "Messenger.LoginViewModel.signUp(username: Swift.String, completion: () -&gt; ()) -&gt; ()"
                   moduleName = "Messenger"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pashasharkov/Desktop/Messenger/Messenger/Screens/Login/LoginVC.swift"
+                  urlString = "file:///Users/pashasharkov/Desktop/Messenger/Messenger/Screens/Login/LoginViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "13"
-                  endingLineNumber = "13"
-                  offsetFromSymbolStart = "91">
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "216">
                </Location>
                <Location
-                  uuid = "4403D482-4BBD-4059-AB45-A9AD711DB2C1 - 7f26d1544edbe6cf"
+                  uuid = "8E82349F-4D73-427B-8DA3-CC0731301574 - 26728df4c468898a"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Messenger.LoginVC.viewModel.setter : Swift.Optional&lt;Messenger.LoginViewModelType&gt;"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Swift.String&gt;) -&gt; Swift.Bool in Messenger.LoginViewModel.signUp(username: Swift.String, completion: () -&gt; ()) -&gt; ()"
                   moduleName = "Messenger"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pashasharkov/Desktop/Messenger/Messenger/Screens/Login/LoginVC.swift"
+                  urlString = "file:///Users/pashasharkov/Desktop/Messenger/Messenger/Screens/Login/LoginViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "13"
-                  endingLineNumber = "13"
-                  offsetFromSymbolStart = "155">
-               </Location>
-               <Location
-                  uuid = "4403D482-4BBD-4059-AB45-A9AD711DB2C1 - 34c7ad89c153e10b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Messenger.LoginVC.viewModel.modify : Swift.Optional&lt;Messenger.LoginViewModelType&gt;"
-                  moduleName = "Messenger"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pashasharkov/Desktop/Messenger/Messenger/Screens/Login/LoginVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "18">
-               </Location>
-               <Location
-                  uuid = "4403D482-4BBD-4059-AB45-A9AD711DB2C1 - 881fdfa2c3df422d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Messenger.LoginVC.viewModel.modify : Swift.Optional&lt;Messenger.LoginViewModelType&gt; with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "Messenger"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pashasharkov/Desktop/Messenger/Messenger/Screens/Login/LoginVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "13"
-                  endingLineNumber = "13"
-                  offsetFromSymbolStart = "8">
-               </Location>
-               <Location
-                  uuid = "4403D482-4BBD-4059-AB45-A9AD711DB2C1 - efaff90029d3d4f4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Messenger.LoginVC.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Messenger.LoginVC"
-                  moduleName = "Messenger"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pashasharkov/Desktop/Messenger/Messenger/Screens/Login/LoginVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "13"
-                  endingLineNumber = "13"
-                  offsetFromSymbolStart = "193">
-               </Location>
-               <Location
-                  uuid = "4403D482-4BBD-4059-AB45-A9AD711DB2C1 - b05998bad069801d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Messenger.LoginVC.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Messenger.LoginVC&gt;"
-                  moduleName = "Messenger"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/pashasharkov/Desktop/Messenger/Messenger/Screens/Login/LoginVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "13"
-                  endingLineNumber = "13"
-                  offsetFromSymbolStart = "149">
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "38">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -115,17 +71,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FBE0D724-D8FE-436C-A8FA-C8A5EBE2F1DD"
+            uuid = "7361D91C-DE2B-412B-B8F4-02E59E4FE241"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Messenger/Screens/Login/LoginVC.swift"
+            filePath = "Messenger/Screens/Login/LoginViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "viewWillAppear(_:)"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "signUp(username:completion:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7361D91C-DE2B-412B-B8F4-02E59E4FE241 - 614285a9c7bf6d92"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Messenger.LoginViewModel.signUp(username: Swift.String, completion: () -&gt; ()) -&gt; ()"
+                  moduleName = "Messenger"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pashasharkov/Desktop/Messenger/Messenger/Screens/Login/LoginViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "3367">
+               </Location>
+               <Location
+                  uuid = "7361D91C-DE2B-412B-B8F4-02E59E4FE241 - a9d0aaad7c0d0434"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (Swift.Bool) -&gt; () in Messenger.LoginViewModel.signUp(username: Swift.String, completion: () -&gt; ()) -&gt; ()"
+                  moduleName = "Messenger"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pashasharkov/Desktop/Messenger/Messenger/Screens/Login/LoginViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "104">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

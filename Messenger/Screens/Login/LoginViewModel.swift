@@ -17,7 +17,7 @@ protocol LoginViewModelType {
 
 class LoginViewModel: LoginViewModelType {
     
-    var users: [[String: String]]?
+    var users: [[String: String]] = [[:]]
     
     private var coordinator: LoginCoordinatorType
     
@@ -42,11 +42,12 @@ class LoginViewModel: LoginViewModelType {
     
     func signUp(username: String, completion: @escaping (() -> Void)) {
         
-        let existUser = !users!.filter { $0["name"] == username }.isEmpty
+        let existUser = !users.filter { $0["name"] == username }.isEmpty
+        print(users)
         
         if existUser {
-            let user = users!.first { $0["name"] == username }
-            users = users!.filter { $0["name"] != username }
+            let user = users.first { $0["name"] == username }
+            users = users.filter { $0["name"] != username }
             UserDefaults.standard.setValue(user!["uid"], forKey: "uid")
             UserDefaults.standard.setValue(user!["name"], forKey: "name")
             completion()
@@ -67,6 +68,7 @@ class LoginViewModel: LoginViewModelType {
     }
     
     func didSignUp() {
+        coordinator.users = users
         coordinator.didSignUp()
     }
     

@@ -19,12 +19,11 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        print(viewModel)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel?.getUsers()
+        viewModel.getUsers()
     }
     
     private func setupUI() {

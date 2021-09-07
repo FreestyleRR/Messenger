@@ -18,7 +18,8 @@ final class DatabaseManager {
         self.database.child(user.uid).setValue([
             "user_name": user.name,
             "user_id": user.uid
-        ], withCompletionBlock: { error, _ in
+        ],
+        withCompletionBlock: { error, _ in
             guard error == nil else {
                 print("fatal error")
                 completion(false)
