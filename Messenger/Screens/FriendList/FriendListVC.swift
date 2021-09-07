@@ -12,6 +12,7 @@ class FriendListVC: UIViewController {
     
     var reuseId = "cell"
     
+    var viewModemLogin: LoginViewModelType!
     var viewModel: FriendListViewModelType!
     
     @IBOutlet var tableView: UITableView!
@@ -21,9 +22,12 @@ class FriendListVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
     }
     
     private func setupUI() {
@@ -33,42 +37,33 @@ class FriendListVC: UIViewController {
         title = name
     }
     
-    func creatingUser(){
-        DatabaseManager.shared.getAllUsers(completion: { [weak self] result in
-            switch result {
-            case .success(let usersCollection):
-                self?.users = usersCollection
-                self?.tableView.reloadData()
-            case .failure(let error):
-                print("Failed to get usres: \(error)")
-            }
-        })
+    deinit {
+        print("\(self) - \(#function)")
     }
     
 }
 
 extension FriendListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return users.count
+        return viewModel.users?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-            let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath)
-            cell.textLabel?.text = users[indexPath.row]["name"]
-            return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath)
+        cell.textLabel?.text = viewModel.users?[indexPath.row]["name"]
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { tableView.deselectRow(at: indexPath, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let friendId = users[indexPath.row]["uid"]!
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let friendId = viewModel.users?[indexPath.row]["uid"]!
+        let storyboard = Storyboard.main
         let vc = storyboard.instantiateViewController(identifier: "MessageListVC") as! MessageListVC
         vc.friId = friendId
         vc.navigationItem.largeTitleDisplayMode = .never
-        vc.title = users[indexPath.row]["name"]
+        vc.title = viewModel.users?[indexPath.row]["name"]
         navigationController?.pushViewController(vc, animated: true)
         
     }

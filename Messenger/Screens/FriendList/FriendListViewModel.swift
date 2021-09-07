@@ -9,17 +9,23 @@ import UIKit
 
 protocol FriendListViewModelType {
     
+    var users: [[String: String]]? { get }
+    
 }
 
 class FriendListViewModel: FriendListViewModelType {
+    var users: [[String : String]]?
+    
     
     private let coordinator: FriendListCoordinatorType
     
-    init(_ coordinator: FriendListCoordinatorType) {
+    init(_ coordinator: FriendListCoordinatorType, users: [[String: String]]) {
         self.coordinator = coordinator
+        self.users = users
     }
     
     deinit {
         print("\(self) - \(#function)")
     }
+    
 }

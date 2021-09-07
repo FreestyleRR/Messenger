@@ -7,7 +7,6 @@
 
 import UIKit
 import Firebase
-import FirebaseDatabase
 
 class LoginVC: UIViewController {
     
@@ -25,6 +24,7 @@ class LoginVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel?.getUsers()
     }
     
     private func setupUI() {
@@ -57,7 +57,6 @@ extension LoginVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        return true
     }
 }
 
@@ -65,10 +64,10 @@ extension LoginVC {
     
     private func validate() {
         let username = nameField.text ?? ""
-        print(viewModel)
         
         if viewModel.isValid(username: username) {
             signIn(username: username)
+            nameField.text = ""
         }
     }
     

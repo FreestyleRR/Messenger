@@ -14,6 +14,7 @@ class AppCoordinator {
     
     private var loginCoordinator: LoginCoordinatorType?
     private var friendCoordinator: FriendListCoordinatorType?
+    private var loginViewModel: LoginViewModel?
     
     init(window: UIWindow) {
         self.window = window
@@ -29,7 +30,7 @@ class AppCoordinator {
     }
     
     func startFriends() {
-        friendCoordinator = FriendListCoordinator(navigationController: rootController)
+        friendCoordinator = FriendListCoordinator(navigationController: rootController, users: loginCoordinator?.users ?? [["name": "Papa"]])
         friendCoordinator?.start()
     }
 }
