@@ -57,7 +57,7 @@ final class DatabaseManager {
             })
         })
     }
-    
+
     public func getAllUsers(completion: @escaping (Result<[[String: String]], Error>) -> Void) {
         database.child("users").getData(completion: { error, snapshot in
             guard let value = snapshot.value as? [[String: String]] else {
@@ -73,11 +73,11 @@ final class DatabaseManager {
     }
 }
 
-// MARK: - Sending massege / conversation
+// MARK: - Check all current messages / Sending massege
 
 extension DatabaseManager {
     
-    public func getAllMessagesForConversation(with id: String, messageID: String, completion: @escaping (Result<[MessageModel], Error>) -> Void) {
+    public func getAllMessagesForConversation(messageID: String, completion: @escaping (Result<[MessageModel], Error>) -> Void) {
         database.child("conversation_\(messageID)/messages").observe(.value, with: { snapshot in
             guard let value = snapshot.value as? [[String: Any]] else{
                 completion(.failure(DatabaseError.fatalError))
@@ -88,7 +88,7 @@ extension DatabaseManager {
                       let content = dictionary["message"] as? String,
                       let toId = dictionary["toId"] as? String,
                       let dateString = dictionary["date"] as? String,
-                      let date = MessageListVC.dateFormatter.date(from: dateString) else {
+                      let date = Data.dateFormatter.date(from: dateString) else {
                     return nil
                 }
                 return MessageModel(fromId: fromId,
@@ -98,6 +98,58 @@ extension DatabaseManager {
             })
             completion(.success(messages))
         })
+    }
+    
+    
+    public func sendMessage(from currentID: String, to friendID: String, messageId: String, message text: String, completion: @escaping (Result<[MessageModel], Error>) -> Void ) {
+        
+        let messageDate = Date()
+        let dateString = Data.dateFormatter.string(from: messageDate)
+        
+        let conversationData: [String: Any] = [
+            "fromId": currentID,
+            "toId": friendID,
+            "date": dateString,
+            "message": text
+        ]
+        //MARK: - Send and check messages
+        if messageId == ("\(currentID)_\(friendID)") {
+            database.child("conversation_\(currentID)_\(friendID)/messages").observeSingleEvent(of: .value, with: { [weak self] snapshot in
+            
+            if var conversation = snapshot.value as? [[String: Any]] {
+                conversation.append(conversationData)
+                self?.database.child("conversation_\(messageId)/messages").setValue(conversation) { error, _ in
+                    guard error == nil else {
+                        return
+                    }
+                }
+            } else {
+                self?.database.child("conversation_\(currentID)_\(friendID)/messages").setValue([conversationData]) { error, _ in
+                    guard error == nil else {
+                        return
+                    }
+                }
+            }
+        })
+        } else {
+            database.child("conversation_\(friendID)_\(currentID)/messages").observeSingleEvent(of: .value, with: { [weak self] snapshot in
+                
+                if var conversation = snapshot.value as? [[String: Any]] {
+                    conversation.append(conversationData)
+                    self?.database.child("conversation_\(messageId)/messages").setValue(conversation) { error, _ in
+                        guard error == nil else {
+                            return
+                        }
+                    }
+                } else {
+                    self?.database.child("conversation_\(friendID)_\(currentID)/messages").setValue([conversationData]) { error, _ in
+                        guard error == nil else {
+                            return
+                        }
+                    }
+                }
+            })
+        }
     }
 }
 

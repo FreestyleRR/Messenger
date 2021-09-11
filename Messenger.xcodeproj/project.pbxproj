@@ -10,6 +10,7 @@
 		51CE0CA126B9C6B500063875 /* IncomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CE0C9F26B9C6B500063875 /* IncomeCell.swift */; };
 		51CE0CA226B9C6B500063875 /* IncomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51CE0CA026B9C6B500063875 /* IncomeCell.xib */; };
 		7EFEA90BDD811640DBA59C38 /* Pods_Messenger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B474D75625C1FDBFD97E061 /* Pods_Messenger.framework */; };
+		C325EF0326E93AD5000C49C0 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = C325EF0226E93AD5000C49C0 /* Data.swift */; };
 		C32882D526C18A4800CB4E72 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882D426C18A4800CB4E72 /* AppCoordinator.swift */; };
 		C32882DA26C18BE600CB4E72 /* MessageListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882D926C18BE600CB4E72 /* MessageListCoordinator.swift */; };
 		C32882DC26C18C0100CB4E72 /* FriendListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882DB26C18C0100CB4E72 /* FriendListCoordinator.swift */; };
@@ -19,7 +20,6 @@
 		C32882E626C18E1700CB4E72 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882E526C18E1700CB4E72 /* LoginViewModel.swift */; };
 		C32882E926C198EF00CB4E72 /* UIStoryboardExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882E826C198EF00CB4E72 /* UIStoryboardExtensions.swift */; };
 		C32882EB26C199CB00CB4E72 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882EA26C199CB00CB4E72 /* UIViewController.swift */; };
-		C32882ED26C19DA700CB4E72 /* ServicesHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882EC26C19DA700CB4E72 /* ServicesHolder.swift */; };
 		C32882F026C1AC5A00CB4E72 /* AlertHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882EF26C1AC5A00CB4E72 /* AlertHelpers.swift */; };
 		C332D80826B7F82E006D7297 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332D80726B7F82E006D7297 /* MessageModel.swift */; };
 		C332D80A26B7F852006D7297 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332D80926B7F852006D7297 /* UserModel.swift */; };
@@ -43,6 +43,7 @@
 		4CC0D8702161A0574C57143E /* Pods-Messenger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.debug.xcconfig"; path = "Target Support Files/Pods-Messenger/Pods-Messenger.debug.xcconfig"; sourceTree = "<group>"; };
 		51CE0C9F26B9C6B500063875 /* IncomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeCell.swift; sourceTree = "<group>"; };
 		51CE0CA026B9C6B500063875 /* IncomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncomeCell.xib; sourceTree = "<group>"; };
+		C325EF0226E93AD5000C49C0 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		C32882D426C18A4800CB4E72 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C32882D926C18BE600CB4E72 /* MessageListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListCoordinator.swift; sourceTree = "<group>"; };
 		C32882DB26C18C0100CB4E72 /* FriendListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListCoordinator.swift; sourceTree = "<group>"; };
@@ -52,7 +53,6 @@
 		C32882E526C18E1700CB4E72 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C32882E826C198EF00CB4E72 /* UIStoryboardExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtensions.swift; sourceTree = "<group>"; };
 		C32882EA26C199CB00CB4E72 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
-		C32882EC26C19DA700CB4E72 /* ServicesHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesHolder.swift; sourceTree = "<group>"; };
 		C32882EF26C1AC5A00CB4E72 /* AlertHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelpers.swift; sourceTree = "<group>"; };
 		C332D80726B7F82E006D7297 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		C332D80926B7F852006D7297 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -171,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				C32882EF26C1AC5A00CB4E72 /* AlertHelpers.swift */,
+				C325EF0226E93AD5000C49C0 /* Data.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -226,7 +227,6 @@
 			isa = PBXGroup;
 			children = (
 				C34C0F4126B1A0EC00790E92 /* DatabaseManager.swift */,
-				C32882EC26C19DA700CB4E72 /* ServicesHolder.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -380,9 +380,9 @@
 				C346FF0C26B0563900646D38 /* LoginVC.swift in Sources */,
 				C32882EB26C199CB00CB4E72 /* UIViewController.swift in Sources */,
 				C32882E026C18DBC00CB4E72 /* MessageListViewModel.swift in Sources */,
-				C32882ED26C19DA700CB4E72 /* ServicesHolder.swift in Sources */,
 				C32882DE26C18C1200CB4E72 /* LoginCoordinator.swift in Sources */,
 				C32882E426C18DF100CB4E72 /* FriendListViewModel.swift in Sources */,
+				C325EF0326E93AD5000C49C0 /* Data.swift in Sources */,
 				C34E953826B9CE080061E5F6 /* OutcomeCell.swift in Sources */,
 				C346FEF126B053AA00646D38 /* AppDelegate.swift in Sources */,
 				C32882DC26C18C0100CB4E72 /* FriendListCoordinator.swift in Sources */,

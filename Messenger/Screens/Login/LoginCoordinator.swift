@@ -15,7 +15,7 @@ protocol LoginCoordinatorTransitions: class {
 protocol LoginCoordinatorType {
     var transitions: LoginCoordinatorTransitions? { get set }
     
-    var users: [[String: String]]? { get set }
+    var users: [[String: String]] { get set }
     
     func start()
     func didSignUp()
@@ -26,7 +26,7 @@ class LoginCoordinator: LoginCoordinatorType {
     private weak var navigationController: UINavigationController?
     private weak var controller: LoginVC? = Storyboard.main.instantiateViewController()
     weak var transitions: LoginCoordinatorTransitions?
-    var users: [[String : String]]?
+    var users: [[String : String]] = [[:]]
     
     private let rootNavigation = UINavigationController()
     
@@ -43,5 +43,9 @@ class LoginCoordinator: LoginCoordinatorType {
     
     func didSignUp() {
         transitions?.didSignUp()
+    }
+    
+    deinit {
+        print("\(self) - \(#function)")
     }
 }

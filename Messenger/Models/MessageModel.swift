@@ -13,7 +13,3 @@ struct MessageModel {
     public var text: String?
     public var sentDate: Date
 }
-
-struct Sender {
-    public var senderId: String
-}
