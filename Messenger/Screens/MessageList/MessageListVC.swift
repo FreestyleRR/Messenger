@@ -24,13 +24,12 @@ class MessageListVC: UIViewController {
     }
     
     private func setupUI() {
-        title = viewModel.friendName
+        title = viewModel.friendModel.name
         tableView.dataSource = self
         inputTextField.delegate = self
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
-        
         tableView.alwaysBounceVertical = true
         tableView.backgroundColor = UIColor.white
         tableView.keyboardDismissMode = .interactive
@@ -45,8 +44,6 @@ class MessageListVC: UIViewController {
     
     @IBAction func sendButton(_ sender: UIButton) {
         sendMessage()
-        
-        inputTextField.text = ""
     }
     
     func scrollToLastRow() {
@@ -82,6 +79,7 @@ extension MessageListVC {
             return
         }
         viewModel.sendMessage(text)
+        inputTextField.text = ""
     }
 }
 
@@ -90,7 +88,7 @@ extension MessageListVC {
 extension MessageListVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-          textField.resignFirstResponder()
+        textField.resignFirstResponder()
     }
 }
 
@@ -99,12 +97,12 @@ extension MessageListVC: UITextFieldDelegate {
 extension MessageListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.messages.count
-        }
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let index = viewModel.messages[indexPath.row].fromId
         
-        if index == viewModel.currentId {
+        if index == viewModel.currentModel.uid {
             let cell = tableView.dequeueReusableCell(withIdentifier: IncomeCell.reuseId, for: indexPath) as! IncomeCell
             cell.configure(with: viewModel.messages[indexPath.row])
             return cell

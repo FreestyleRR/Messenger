@@ -10,4 +10,14 @@ import Foundation
 struct UserModel {
     var name: String
     var uid: String
+    
+    init() {
+        name = "empty"
+        uid = "empty"
+    }
+    
+    init(name: String, uid: String) {
+        self.name = name
+        self.uid = uid
+    }
 }

@@ -20,7 +20,6 @@
 		C32882E626C18E1700CB4E72 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882E526C18E1700CB4E72 /* LoginViewModel.swift */; };
 		C32882E926C198EF00CB4E72 /* UIStoryboardExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882E826C198EF00CB4E72 /* UIStoryboardExtensions.swift */; };
 		C32882EB26C199CB00CB4E72 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882EA26C199CB00CB4E72 /* UIViewController.swift */; };
-		C32882F026C1AC5A00CB4E72 /* AlertHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882EF26C1AC5A00CB4E72 /* AlertHelpers.swift */; };
 		C332D80826B7F82E006D7297 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332D80726B7F82E006D7297 /* MessageModel.swift */; };
 		C332D80A26B7F852006D7297 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332D80926B7F852006D7297 /* UserModel.swift */; };
 		C346FEF126B053AA00646D38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C346FEF026B053AA00646D38 /* AppDelegate.swift */; };
@@ -53,7 +52,6 @@
 		C32882E526C18E1700CB4E72 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C32882E826C198EF00CB4E72 /* UIStoryboardExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtensions.swift; sourceTree = "<group>"; };
 		C32882EA26C199CB00CB4E72 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
-		C32882EF26C1AC5A00CB4E72 /* AlertHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelpers.swift; sourceTree = "<group>"; };
 		C332D80726B7F82E006D7297 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		C332D80926B7F852006D7297 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		C346FEED26B053AA00646D38 /* Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,15 +165,6 @@
 			path = Extencion;
 			sourceTree = "<group>";
 		};
-		C32882EE26C1AA6500CB4E72 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				C32882EF26C1AC5A00CB4E72 /* AlertHelpers.swift */,
-				C325EF0226E93AD5000C49C0 /* Data.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		C332D80426B7F653006D7297 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,7 +200,6 @@
 				C346FEF226B053AA00646D38 /* SceneDelegate.swift */,
 				C32882D226C18A0900CB4E72 /* Coordinators */,
 				C346FF0A26B0551600646D38 /* Storyboards */,
-				C32882EE26C1AA6500CB4E72 /* Helpers */,
 				C32882D326C18A1100CB4E72 /* Screens */,
 				C332D80426B7F653006D7297 /* Cells */,
 				C32882E726C198B500CB4E72 /* Extencion */,
@@ -226,6 +214,7 @@
 		C346FF0726B0547900646D38 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C325EF0226E93AD5000C49C0 /* Data.swift */,
 				C34C0F4126B1A0EC00790E92 /* DatabaseManager.swift */,
 			);
 			path = Services;
@@ -394,7 +383,6 @@
 				51CE0CA126B9C6B500063875 /* IncomeCell.swift in Sources */,
 				C332D80A26B7F852006D7297 /* UserModel.swift in Sources */,
 				C34C0F4426B1DC0A00790E92 /* MessageListVC.swift in Sources */,
-				C32882F026C1AC5A00CB4E72 /* AlertHelpers.swift in Sources */,
 				C34C0F4226B1A0EC00790E92 /* DatabaseManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

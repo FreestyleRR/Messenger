@@ -9,45 +9,41 @@ import UIKit
 
 protocol MessageListViewModelType {
     
-    var userModel: UserModel { get set }
-    var messages: [MessageModel] { get set }
-    var friId: String { get }
-    var currentId: String { get }
-    var friendName: String { get }
+    var friendModel: UserModel { get }
+    var currentModel: UserModel { get }
+    var messages: [MessageModel] { get }
     
     func sendMessage(_ text: String)
     func getAllMessages(completion: @escaping (() -> Void))
 }
 
 class MessageListViewModel: MessageListViewModelType {
-    
-    
-    
-    var currentId = UserDefaults.standard.value(forKey: "uid") as! String
     private let coordinator: MessageListCoordinatorType
     
-    var userModel: UserModel
+    var friendModel: UserModel
+    var currentModel: UserModel
     var messages = [MessageModel]()
     var messageId: String?
     
-    init(_ coordinator: MessageListCoordinatorType, model: UserModel) {
+    init(_ coordinator: MessageListCoordinatorType, friendModel: UserModel, currentModel: UserModel) {
         self.coordinator = coordinator
-        self.userModel = model
+        self.friendModel = friendModel
+        self.currentModel = currentModel
+    }
+    
+    var currentId: String {
+        return currentModel.uid
     }
     
     var friId: String {
-        return userModel.uid
-    }
-    
-    var friendName: String {
-        return userModel.name
+        return friendModel.uid
     }
     
     func sendMessage(_ text: String) {
-        DatabaseManager.shared.sendMessage(from: currentId, to: friId, messageId: messageId!, message: text) { result in
+        DatabaseManager.shared.sendMessage(from: currentId, to: friId, messageId: messageId!, message: text) { [weak self] result in
             switch result {
             case .success(let messageCollection):
-                self.messages = messageCollection
+                self?.messages = messageCollection
             case .failure(let error):
                 print("failed to send message: \(error)")
             }
@@ -57,7 +53,7 @@ class MessageListViewModel: MessageListViewModelType {
     func getAllMessages(completion: @escaping (() -> Void)) {
         let messageIdOne = "\(currentId)_\(friId)"
         let messageIdTwo = "\(friId)_\(currentId)"
- 
+        
         DatabaseManager.shared.getAllMessagesForConversation(messageID: messageIdOne, completion: { [weak self] result in
             switch result {
             case .success(let messages):

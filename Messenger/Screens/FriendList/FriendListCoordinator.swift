@@ -9,13 +9,13 @@ import UIKit
 
 protocol FriendListCoordinatorTransitions: class {
     func startCommunication()
-    
 }
 
 protocol FriendListCoordinatorType {
     var transitions: FriendListCoordinatorTransitions? { get set }
     
-    var userModel: UserModel! { get set }
+    var friendUserModel: UserModel { get set }
+    var currentUserModel: UserModel { get set }
     
     func startCommunication()
     func start()
@@ -27,11 +27,12 @@ class FriendListCoordinator: FriendListCoordinatorType {
     private weak var controller = Storyboard.main.controller(withClass: FriendListVC.self)
     weak var transitions: FriendListCoordinatorTransitions?
     
-    var userModel: UserModel!
+    var friendUserModel = UserModel()
+    var currentUserModel = UserModel()
     
-    init(navigationController: UINavigationController?, users: [[String: String]]) {
+    init(navigationController: UINavigationController?, users: [[String: String]], currentUserModel: UserModel) {
         self.navigationController = navigationController
-        controller?.viewModel = FriendListViewModel(self, users: users)
+        controller?.viewModel = FriendListViewModel(self, users: users, currentUserModel: currentUserModel)
     }
     
     func start() {

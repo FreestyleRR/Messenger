@@ -16,13 +16,14 @@ protocol MessageListCoordinatorType {
 }
 
 class MessageListCoordinator: MessageListCoordinatorType {
+    
     private weak var navigationController: UINavigationController?
     weak var controller = Storyboard.main.controller(withClass: MessageListVC.self)
     weak var transitions: MessageListCoordinatorTransitions?
     
-    init(navigationController: UINavigationController?, model: UserModel) {
+    init(navigationController: UINavigationController?, friendModel: UserModel, currentModel: UserModel) {
         self.navigationController = navigationController
-        controller?.viewModel = MessageListViewModel(self, model: model)
+        controller?.viewModel = MessageListViewModel(self, friendModel: friendModel, currentModel: currentModel)
     }
     
     func start() {

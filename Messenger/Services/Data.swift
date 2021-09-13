@@ -17,5 +17,4 @@ class Data {
         formatter.locale = .current
         return formatter
     }()
-    
 }

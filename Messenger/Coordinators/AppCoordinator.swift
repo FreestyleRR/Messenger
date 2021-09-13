@@ -30,13 +30,13 @@ class AppCoordinator {
     }
     
     func startFriends() {
-        friendCoordinator = FriendListCoordinator(navigationController: rootController, users: loginCoordinator!.users)
+        friendCoordinator = FriendListCoordinator(navigationController: rootController, users: loginCoordinator!.users, currentUserModel: loginCoordinator!.currentUserModel)
         friendCoordinator?.transitions = self
         friendCoordinator?.start()
     }
     
     func startMessages() {
-        messageCoordinator = MessageListCoordinator(navigationController: rootController, model: friendCoordinator?.userModel ?? UserModel(name: "failer name", uid: "failer uid"))
+        messageCoordinator = MessageListCoordinator(navigationController: rootController, friendModel: friendCoordinator!.friendUserModel, currentModel: friendCoordinator!.currentUserModel)
         messageCoordinator?.start()
     }
 }

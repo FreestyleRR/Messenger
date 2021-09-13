@@ -8,18 +8,19 @@
 import Foundation
 
 protocol LoginViewModelType {
+    
     func getUsers()
     func isValid(username: String) -> Bool
     func signUp(username: String, completion: @escaping (() -> Void))
-    
     func didSignUp()
 }
 
 class LoginViewModel: LoginViewModelType {
     
-    var users: [[String: String]] = [[:]]
-    
     private var coordinator: LoginCoordinatorType
+    
+    var users: [[String: String]] = [[:]]
+    var currentUserModel = UserModel()
     
     init(_ coordinator: LoginCoordinatorType) {
         self.coordinator = coordinator
@@ -45,15 +46,15 @@ class LoginViewModel: LoginViewModelType {
         let existUser = !users.filter { $0["name"] == username }.isEmpty
         
         if existUser {
-            let user = users.first { $0["name"] == username }
+            guard let user = users.first (where: { $0["name"] == username }) else {
+                return
+            }
+            currentUserModel = UserModel(name: user["name"]!, uid: user["uid"]!)
             users = users.filter { $0["name"] != username }
-            UserDefaults.standard.setValue(user!["uid"], forKey: "uid")
-            UserDefaults.standard.setValue(user!["name"], forKey: "name")
             completion()
         } else {
             let uID = UUID().uuidString
-            UserDefaults.standard.setValue(uID, forKey: "uid")
-            UserDefaults.standard.setValue(username, forKey: "name")
+            currentUserModel = UserModel(name: username, uid: uID)
             
             DatabaseManager.shared.insertUser(with: UserModel(name: username, uid: uID), completion: { success in
                 if success {
@@ -68,6 +69,7 @@ class LoginViewModel: LoginViewModelType {
     
     func didSignUp() {
         coordinator.users = users
+        coordinator.currentUserModel = currentUserModel
         coordinator.didSignUp()
     }
     
