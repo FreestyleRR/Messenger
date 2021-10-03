@@ -23,16 +23,25 @@ class MessageListVC: UIViewController {
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.getAllMessages { [weak self] in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.scrollToLastRow()
+            }
+        }
+    }
+    
     private func setupUI() {
-        title = viewModel.friendModel.name
-        tableView.dataSource = self
         inputTextField.delegate = self
-        
+        tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.alwaysBounceVertical = true
         tableView.backgroundColor = UIColor.white
         tableView.keyboardDismissMode = .interactive
+        title = viewModel.friendModel.name
         
         tableView.register(UINib(nibName: OutcomeCell.reuseId, bundle: nil), forCellReuseIdentifier: OutcomeCell.reuseId)
         tableView.register(UINib(nibName: IncomeCell.reuseId, bundle: nil), forCellReuseIdentifier: IncomeCell.reuseId)
@@ -42,22 +51,17 @@ class MessageListVC: UIViewController {
         tableView.addGestureRecognizer(tapGesture)
     }
     
-    @IBAction func sendButton(_ sender: UIButton) {
-        sendMessage()
-    }
-    
-    func scrollToLastRow() {
+    private func scrollToLastRow() {
         let indexPath = IndexPath(row: viewModel.messages.count - 1, section: 0)
         self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        viewModel.getAllMessages { [weak self] in
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-                self?.scrollToLastRow()
-            }
-        }
+    private func sendMessage() {
+        guard let text = inputTextField.text,
+              !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
+        
+        viewModel.sendMessage(text)
+        inputTextField.text = ""
     }
     
     @objc func dismissKeyboard() {
@@ -67,23 +71,13 @@ class MessageListVC: UIViewController {
     deinit {
         print("\(self) - \(#function)")
     }
-}
-
-// MARK: - Send message
-
-extension MessageListVC {
     
-    func sendMessage() {
-        guard let text = inputTextField.text,
-              !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
-            return
-        }
-        viewModel.sendMessage(text)
-        inputTextField.text = ""
+    @IBAction func sendButton(_ sender: UIButton) {
+        sendMessage()
     }
 }
 
-// MARK: - UITextFieldDelegate
+// MARK: - UITextFieldDelegate -
 
 extension MessageListVC: UITextFieldDelegate {
     
@@ -92,7 +86,7 @@ extension MessageListVC: UITextFieldDelegate {
     }
 }
 
-// MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource -
 
 extension MessageListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -102,7 +96,7 @@ extension MessageListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let index = viewModel.messages[indexPath.row].fromId
         
-        if index == viewModel.currentModel.uid {
+        if index != viewModel.friendModel.uid {
             let cell = tableView.dequeueReusableCell(withIdentifier: IncomeCell.reuseId, for: indexPath) as! IncomeCell
             cell.configure(with: viewModel.messages[indexPath.row])
             return cell

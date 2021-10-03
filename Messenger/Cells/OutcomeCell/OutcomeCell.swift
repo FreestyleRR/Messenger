@@ -14,7 +14,6 @@ class OutcomeCell: UITableViewCell {
     
     static let reuseId = "OutcomeCell"
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

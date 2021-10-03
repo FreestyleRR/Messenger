@@ -18,11 +18,13 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         viewModel.getUsers()
     }
     
@@ -36,17 +38,17 @@ class LoginVC: UIViewController {
         view.addGestureRecognizer(tapGesture)
     }
     
-    @IBAction func btnSignInClicked(_ sender: UIButton) {
-        validate()
-    }
     
-    @objc
-    private func dismissKeyboard() {
+    @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     
     deinit {
         print("\(self) - \(#function)")
+    }
+    
+    @IBAction func btnSignInClicked(_ sender: UIButton) {
+        validate()
     }
 }
 
@@ -72,8 +74,9 @@ extension LoginVC {
     
     private func signIn(username: String) {
         viewModel.signUp(username: username) { [weak self] in
+            guard let self = self else { return }
             DispatchQueue.main.async {
-                self?.viewModel.didSignUp()
+                self.viewModel.didSignUp()
             }
         }
     }

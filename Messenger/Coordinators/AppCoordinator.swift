@@ -18,7 +18,6 @@ class AppCoordinator {
     
     init(window: UIWindow) {
         self.window = window
-        
         self.window.rootViewController = rootController
         self.window.makeKeyAndVisible()
     }
@@ -30,18 +29,26 @@ class AppCoordinator {
     }
     
     func startFriends() {
-        friendCoordinator = FriendListCoordinator(navigationController: rootController, users: loginCoordinator!.users, currentUserModel: loginCoordinator!.currentUserModel)
+        guard let coordinator = loginCoordinator else { return }
+        
+        friendCoordinator = FriendListCoordinator(navigationController: rootController,
+                                                  users: coordinator.users,
+                                                  currentUserModel: coordinator.currentUserModel)
         friendCoordinator?.transitions = self
         friendCoordinator?.start()
     }
     
     func startMessages() {
-        messageCoordinator = MessageListCoordinator(navigationController: rootController, friendModel: friendCoordinator!.friendUserModel, currentModel: friendCoordinator!.currentUserModel)
+        guard let coordinator = friendCoordinator else { return }
+        
+        messageCoordinator = MessageListCoordinator(navigationController: rootController,
+                                                    friendModel: coordinator.friendUserModel,
+                                                    currentModel: coordinator.currentUserModel)
         messageCoordinator?.start()
     }
 }
 
-// MARK: - LoginCoordinatorTransitions
+// MARK: - LoginCoordinatorTransitions -
 
 extension AppCoordinator: LoginCoordinatorTransitions, FriendListCoordinatorTransitions {
     func didSignUp() {

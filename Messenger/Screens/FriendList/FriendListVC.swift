@@ -21,7 +21,7 @@ class FriendListVC: UIViewController {
     }
     
     private func setupUI() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: viewModel.reuseId)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.delegate = self
         tableView.dataSource = self
         title = viewModel.currentUserModel.name
@@ -38,8 +38,8 @@ extension FriendListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: viewModel.reuseId, for: indexPath)
-        cell.textLabel?.text = viewModel.users[indexPath.row]["name"]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = viewModel.users[indexPath.row]["user_name"]
         return cell
     }
     

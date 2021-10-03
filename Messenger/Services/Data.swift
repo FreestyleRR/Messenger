@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 class Data {
     
     public static let dateFormatter: DateFormatter = {

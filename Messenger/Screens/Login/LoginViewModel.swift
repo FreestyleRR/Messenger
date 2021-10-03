@@ -18,23 +18,22 @@ protocol LoginViewModelType {
 class LoginViewModel: LoginViewModelType {
     
     private var coordinator: LoginCoordinatorType
-    
-    var users: [[String: String]] = [[:]]
-    var currentUserModel = UserModel()
+    private var users: [[String: String]] = [[:]]
+    private var currentUserModel = UserModel()
     
     init(_ coordinator: LoginCoordinatorType) {
         self.coordinator = coordinator
     }
     
     func getUsers() {
-        DatabaseManager.shared.getAllUsers(completion: { [weak self] result in
+        DatabaseManager.shared.getAllUsers { [weak self] result in
             switch result {
             case .success(let usersCollection):
                 self?.users = usersCollection
             case .failure(let error):
                 print("Failed to get usres: \(error)")
             }
-        })
+        }
     }
     
     func isValid(username: String) -> Bool {
@@ -42,38 +41,37 @@ class LoginViewModel: LoginViewModelType {
     }
     
     func signUp(username: String, completion: @escaping (() -> Void)) {
-        
-        let existUser = !users.filter { $0["name"] == username }.isEmpty
+        let existUser = !users.filter { $0["user_name"] == username }.isEmpty
         
         if existUser {
-            guard let user = users.first (where: { $0["name"] == username }) else {
-                return
-            }
-            currentUserModel = UserModel(name: user["name"]!, uid: user["uid"]!)
-            users = users.filter { $0["name"] != username }
+            guard let user = users.first (where: { $0["user_name"] == username }) else { return }
+            guard let uid = user["user_id"], let name = user["user_name"] else { return }
+            
+            currentUserModel = UserModel(name: name, uid: uid)
+            users = users.filter { $0["user_name"] != username }
             completion()
         } else {
             let uID = UUID().uuidString
             currentUserModel = UserModel(name: username, uid: uID)
             
-            DatabaseManager.shared.insertUser(with: UserModel(name: username, uid: uID), completion: { success in
+            DatabaseManager.shared.insertUser(user: currentUserModel) { success in
                 if success {
                     print("User creating")
                     completion()
                 } else {
-                    print("User not creating")
+                    print("Error: User is not creating")
                 }
-            })
+            }
         }
+    }
+    
+    deinit {
+        print("\(self) - \(#function)")
     }
     
     func didSignUp() {
         coordinator.users = users
         coordinator.currentUserModel = currentUserModel
         coordinator.didSignUp()
-    }
-    
-    deinit {
-        print("\(self) - \(#function)")
     }
 }

@@ -10,7 +10,6 @@ import UIKit
 protocol MessageListViewModelType {
     
     var friendModel: UserModel { get }
-    var currentModel: UserModel { get }
     var messages: [MessageModel] { get }
     
     func sendMessage(_ text: String)
@@ -18,12 +17,13 @@ protocol MessageListViewModelType {
 }
 
 class MessageListViewModel: MessageListViewModelType {
+    
     private let coordinator: MessageListCoordinatorType
+    private var currentModel: UserModel
+    private var messageId: String?
     
     var friendModel: UserModel
-    var currentModel: UserModel
     var messages = [MessageModel]()
-    var messageId: String?
     
     init(_ coordinator: MessageListCoordinatorType, friendModel: UserModel, currentModel: UserModel) {
         self.coordinator = coordinator
@@ -31,16 +31,12 @@ class MessageListViewModel: MessageListViewModelType {
         self.currentModel = currentModel
     }
     
-    var currentId: String {
-        return currentModel.uid
-    }
-    
-    var friId: String {
-        return friendModel.uid
-    }
-    
     func sendMessage(_ text: String) {
-        DatabaseManager.shared.sendMessage(from: currentId, to: friId, messageId: messageId!, message: text) { [weak self] result in
+        let dateString = Data.dateFormatter.string(from: Date())
+        let messageModel = MessageModel(fromId: currentModel.uid, toId: friendModel.uid, text: text, sentDate: dateString)
+        guard let messId = messageId else { return }
+        
+        DatabaseManager.shared.sendMessage(message: messageModel, messageId: messId) { [weak self] result in
             switch result {
             case .success(let messageCollection):
                 self?.messages = messageCollection
@@ -50,45 +46,40 @@ class MessageListViewModel: MessageListViewModelType {
         }
     }
     
+    private func getAllMessageFor(messageId: String, completion: @escaping (() -> Void)) {
+        DatabaseManager.shared.getAllMessagesForConversation(messageID: messageId) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let messages):
+                guard !messages.isEmpty else { return }
+                self.messages = messages
+                self.messageId = messageId
+                completion()
+            case .failure(let error):
+                print("failed to get messages: \(error)")
+            }
+        }
+    }
+    
     func getAllMessages(completion: @escaping (() -> Void)) {
-        let messageIdOne = "\(currentId)_\(friId)"
-        let messageIdTwo = "\(friId)_\(currentId)"
+        let messageIdOne = "\(currentModel.uid)_\(friendModel.uid)"
+        let messageIdTwo = "\(friendModel.uid)_\(currentModel.uid)"
         
-        DatabaseManager.shared.getAllMessagesForConversation(messageID: messageIdOne, completion: { [weak self] result in
-            switch result {
-            case .success(let messages):
-                guard !messages.isEmpty else {
-                    return
-                }
-                self?.messages = messages
-                self?.messageId = messageIdOne
-                completion()
-            case .failure(let error):
-                print("failed to get messages: \(error)")
-            }
-        })
+        getAllMessageFor(messageId: messageIdOne) {
+            completion()
+        }
         
-        DatabaseManager.shared.getAllMessagesForConversation(messageID: messageIdTwo, completion: { [weak self] result in
-            switch result {
-            case .success(let messages):
-                guard !messages.isEmpty else {
-                    return
-                }
-                self?.messages = messages
-                self?.messageId = messageIdTwo
-                completion()
-            case .failure(let error):
-                print("failed to get messages: \(error)")
-            }
-        })
+        getAllMessageFor(messageId: messageIdTwo) {
+            completion()
+        }
         
         if messageId == nil {
-            messageId = "\(currentId)_\(friId)"
+            messageId = messageIdOne
         }
     }
     
     deinit {
         print("\(self) - \(#function)")
     }
-    
 }

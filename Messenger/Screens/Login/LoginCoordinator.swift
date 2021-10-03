@@ -26,8 +26,8 @@ class LoginCoordinator: LoginCoordinatorType {
     
     private weak var navigationController: UINavigationController?
     private weak var controller: LoginVC? = Storyboard.main.instantiateViewController()
-    weak var transitions: LoginCoordinatorTransitions?
     private let rootNavigation = UINavigationController()
+    weak var transitions: LoginCoordinatorTransitions?
     
     var users: [[String : String]] = [[:]]
     var currentUserModel = UserModel()

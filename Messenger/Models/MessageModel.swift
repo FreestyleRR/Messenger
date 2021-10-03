@@ -8,8 +8,8 @@
 import Foundation
 
 struct MessageModel {
-    public var fromId: String
-    public var toId: String
-    public var text: String?
-    public var sentDate: Date
+    var fromId: String
+    var toId: String
+    var text: String
+    var sentDate: String
 }

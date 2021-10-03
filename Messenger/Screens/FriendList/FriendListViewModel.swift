@@ -10,7 +10,6 @@ import UIKit
 protocol FriendListViewModelType {
     var users: [[String: String]] { get }
     var currentUserModel: UserModel { get }
-    var reuseId: String { get }
     
     func getIndex(_ index: Int)
     func startCommunication()
@@ -29,19 +28,11 @@ class FriendListViewModel: FriendListViewModelType {
         self.currentUserModel = currentUserModel
     }
     
-    var reuseId: String {
-        return "cell"
-    }
-    
     func getIndex(_ index: Int) {
-        guard let uid = users[index]["uid"] else {
+        guard let uid = users[index]["user_id"], let name = users[index]["user_name"] else {
             return
         }
-        guard let name = users[index]["name"] else {
-            return
-        }
-        let model = UserModel(name: name, uid: uid)
-        coordinator.friendUserModel = model
+        coordinator.friendUserModel = UserModel(name: name, uid: uid)
     }
     
     deinit {
@@ -52,5 +43,4 @@ class FriendListViewModel: FriendListViewModelType {
         coordinator.currentUserModel = currentUserModel
         coordinator.startCommunication()
     }
-    
 }
