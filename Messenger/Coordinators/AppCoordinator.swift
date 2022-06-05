@@ -12,8 +12,8 @@ class AppCoordinator {
     
     private var rootController = UINavigationController()
     
-    private var loginCoordinator: LoginCoordinatorType?
-    private var friendCoordinator: FriendListCoordinatorType?
+    private var loginCoordinator: LoginCoord?
+    private var friendCoordinator: FriendListCoord?
     private var messageCoordinator: MessageListCoordinatorType?
     
     init(window: UIWindow) {
@@ -23,7 +23,7 @@ class AppCoordinator {
     }
     
     func startLogin() {
-        loginCoordinator = LoginCoordinator(navigationController: rootController)
+        loginCoordinator = LoginCoord(navigationController: rootController)
         loginCoordinator?.transitions = self
         loginCoordinator?.start()
     }
@@ -31,7 +31,7 @@ class AppCoordinator {
     func startFriends() {
         guard let coordinator = loginCoordinator else { return }
         
-        friendCoordinator = FriendListCoordinator(navigationController: rootController,
+        friendCoordinator = FriendListCoord(navigationController: rootController,
                                                   users: coordinator.users,
                                                   currentUserModel: coordinator.currentUserModel)
         friendCoordinator?.transitions = self

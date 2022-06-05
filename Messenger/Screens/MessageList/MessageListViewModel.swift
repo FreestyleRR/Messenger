@@ -32,7 +32,7 @@ class MessageListViewModel: MessageListViewModelType {
     }
     
     func sendMessage(_ text: String) {
-        let dateString = Data.dateFormatter.string(from: Date())
+        let dateString = Date().string(with: .newForServer)
         let messageModel = MessageModel(fromId: currentModel.uid, toId: friendModel.uid, text: text, sentDate: dateString)
         guard let messId = messageId else { return }
         

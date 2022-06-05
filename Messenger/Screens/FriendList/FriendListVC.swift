@@ -9,8 +9,7 @@ import UIKit
 import Firebase
 
 class FriendListVC: UIViewController {
-    
-    var viewModel: FriendListViewModelType!
+    var viewModel: FriendListVM!
     
     @IBOutlet var tableView: UITableView!
     
@@ -24,7 +23,7 @@ class FriendListVC: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.delegate = self
         tableView.dataSource = self
-        title = viewModel.currentUserModel.name
+        title = viewModel.title
     }
     
     deinit {

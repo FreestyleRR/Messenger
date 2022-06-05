@@ -13,11 +13,11 @@
 		C325EF0326E93AD5000C49C0 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = C325EF0226E93AD5000C49C0 /* Data.swift */; };
 		C32882D526C18A4800CB4E72 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882D426C18A4800CB4E72 /* AppCoordinator.swift */; };
 		C32882DA26C18BE600CB4E72 /* MessageListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882D926C18BE600CB4E72 /* MessageListCoordinator.swift */; };
-		C32882DC26C18C0100CB4E72 /* FriendListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882DB26C18C0100CB4E72 /* FriendListCoordinator.swift */; };
-		C32882DE26C18C1200CB4E72 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882DD26C18C1200CB4E72 /* LoginCoordinator.swift */; };
+		C32882DC26C18C0100CB4E72 /* FriendListCoord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882DB26C18C0100CB4E72 /* FriendListCoord.swift */; };
+		C32882DE26C18C1200CB4E72 /* LoginCoord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882DD26C18C1200CB4E72 /* LoginCoord.swift */; };
 		C32882E026C18DBC00CB4E72 /* MessageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882DF26C18DBC00CB4E72 /* MessageListViewModel.swift */; };
-		C32882E426C18DF100CB4E72 /* FriendListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882E326C18DF100CB4E72 /* FriendListViewModel.swift */; };
-		C32882E626C18E1700CB4E72 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882E526C18E1700CB4E72 /* LoginViewModel.swift */; };
+		C32882E426C18DF100CB4E72 /* FriendListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882E326C18DF100CB4E72 /* FriendListVM.swift */; };
+		C32882E626C18E1700CB4E72 /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882E526C18E1700CB4E72 /* LoginVM.swift */; };
 		C32882E926C198EF00CB4E72 /* UIStoryboardExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882E826C198EF00CB4E72 /* UIStoryboardExtensions.swift */; };
 		C32882EB26C199CB00CB4E72 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32882EA26C199CB00CB4E72 /* UIViewController.swift */; };
 		C332D80826B7F82E006D7297 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332D80726B7F82E006D7297 /* MessageModel.swift */; };
@@ -34,6 +34,11 @@
 		C34C0F4426B1DC0A00790E92 /* MessageListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34C0F4326B1DC0A00790E92 /* MessageListVC.swift */; };
 		C34E953826B9CE080061E5F6 /* OutcomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34E953626B9CE080061E5F6 /* OutcomeCell.swift */; };
 		C34E953926B9CE080061E5F6 /* OutcomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C34E953726B9CE080061E5F6 /* OutcomeCell.xib */; };
+		CCACD77C284CB14D00FDF228 /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCACD77B284CB14D00FDF228 /* UINavigationBar.swift */; };
+		CCACD77E284CB65400FDF228 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCACD77D284CB65400FDF228 /* Date.swift */; };
+		CCACD783284CD6C600FDF228 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCACD782284CD6C600FDF228 /* TextView.swift */; };
+		CCACD785284CD91500FDF228 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCACD784284CD91500FDF228 /* TextFieldView.swift */; };
+		CCACD787284CE6F000FDF228 /* UIResponder+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCACD786284CE6F000FDF228 /* UIResponder+Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,11 +50,11 @@
 		C325EF0226E93AD5000C49C0 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		C32882D426C18A4800CB4E72 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C32882D926C18BE600CB4E72 /* MessageListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListCoordinator.swift; sourceTree = "<group>"; };
-		C32882DB26C18C0100CB4E72 /* FriendListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListCoordinator.swift; sourceTree = "<group>"; };
-		C32882DD26C18C1200CB4E72 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		C32882DB26C18C0100CB4E72 /* FriendListCoord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListCoord.swift; sourceTree = "<group>"; };
+		C32882DD26C18C1200CB4E72 /* LoginCoord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoord.swift; sourceTree = "<group>"; };
 		C32882DF26C18DBC00CB4E72 /* MessageListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListViewModel.swift; sourceTree = "<group>"; };
-		C32882E326C18DF100CB4E72 /* FriendListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewModel.swift; sourceTree = "<group>"; };
-		C32882E526C18E1700CB4E72 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		C32882E326C18DF100CB4E72 /* FriendListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListVM.swift; sourceTree = "<group>"; };
+		C32882E526C18E1700CB4E72 /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
 		C32882E826C198EF00CB4E72 /* UIStoryboardExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtensions.swift; sourceTree = "<group>"; };
 		C32882EA26C199CB00CB4E72 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		C332D80726B7F82E006D7297 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
@@ -68,6 +73,11 @@
 		C34C0F4326B1DC0A00790E92 /* MessageListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListVC.swift; sourceTree = "<group>"; };
 		C34E953626B9CE080061E5F6 /* OutcomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutcomeCell.swift; sourceTree = "<group>"; };
 		C34E953726B9CE080061E5F6 /* OutcomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OutcomeCell.xib; sourceTree = "<group>"; };
+		CCACD77B284CB14D00FDF228 /* UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
+		CCACD77D284CB65400FDF228 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		CCACD782284CD6C600FDF228 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		CCACD784284CD91500FDF228 /* TextFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		CCACD786284CE6F000FDF228 /* UIResponder+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Utils.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,8 +139,8 @@
 		C32882D626C18A6200CB4E72 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				C32882DD26C18C1200CB4E72 /* LoginCoordinator.swift */,
-				C32882E526C18E1700CB4E72 /* LoginViewModel.swift */,
+				C32882DD26C18C1200CB4E72 /* LoginCoord.swift */,
+				C32882E526C18E1700CB4E72 /* LoginVM.swift */,
 				C346FF0B26B0563900646D38 /* LoginVC.swift */,
 			);
 			path = Login;
@@ -139,8 +149,8 @@
 		C32882D726C18AA500CB4E72 /* FriendList */ = {
 			isa = PBXGroup;
 			children = (
-				C32882DB26C18C0100CB4E72 /* FriendListCoordinator.swift */,
-				C32882E326C18DF100CB4E72 /* FriendListViewModel.swift */,
+				C32882DB26C18C0100CB4E72 /* FriendListCoord.swift */,
+				C32882E326C18DF100CB4E72 /* FriendListVM.swift */,
 				C346FF1326B056EB00646D38 /* FriendListVC.swift */,
 			);
 			path = FriendList;
@@ -161,6 +171,10 @@
 			children = (
 				C32882E826C198EF00CB4E72 /* UIStoryboardExtensions.swift */,
 				C32882EA26C199CB00CB4E72 /* UIViewController.swift */,
+				CCACD77B284CB14D00FDF228 /* UINavigationBar.swift */,
+				CCACD77D284CB65400FDF228 /* Date.swift */,
+				CCACD782284CD6C600FDF228 /* TextView.swift */,
+				CCACD786284CE6F000FDF228 /* UIResponder+Utils.swift */,
 			);
 			path = Extencion;
 			sourceTree = "<group>";
@@ -195,6 +209,7 @@
 		C346FEEF26B053AA00646D38 /* Messenger */ = {
 			isa = PBXGroup;
 			children = (
+				CCACD77F284CBFAD00FDF228 /* Views */,
 				C346FEF926B053AB00646D38 /* Assets.xcassets */,
 				C346FEF026B053AA00646D38 /* AppDelegate.swift */,
 				C346FEF226B053AA00646D38 /* SceneDelegate.swift */,
@@ -245,6 +260,14 @@
 				C34E953726B9CE080061E5F6 /* OutcomeCell.xib */,
 			);
 			path = OutcomeCell;
+			sourceTree = "<group>";
+		};
+		CCACD77F284CBFAD00FDF228 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CCACD784284CD91500FDF228 /* TextFieldView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,22 +389,27 @@
 			files = (
 				C32882E926C198EF00CB4E72 /* UIStoryboardExtensions.swift in Sources */,
 				C32882D526C18A4800CB4E72 /* AppCoordinator.swift in Sources */,
+				CCACD785284CD91500FDF228 /* TextFieldView.swift in Sources */,
 				C346FF0C26B0563900646D38 /* LoginVC.swift in Sources */,
 				C32882EB26C199CB00CB4E72 /* UIViewController.swift in Sources */,
 				C32882E026C18DBC00CB4E72 /* MessageListViewModel.swift in Sources */,
-				C32882DE26C18C1200CB4E72 /* LoginCoordinator.swift in Sources */,
-				C32882E426C18DF100CB4E72 /* FriendListViewModel.swift in Sources */,
+				C32882DE26C18C1200CB4E72 /* LoginCoord.swift in Sources */,
+				C32882E426C18DF100CB4E72 /* FriendListVM.swift in Sources */,
 				C325EF0326E93AD5000C49C0 /* Data.swift in Sources */,
 				C34E953826B9CE080061E5F6 /* OutcomeCell.swift in Sources */,
+				CCACD783284CD6C600FDF228 /* TextView.swift in Sources */,
 				C346FEF126B053AA00646D38 /* AppDelegate.swift in Sources */,
-				C32882DC26C18C0100CB4E72 /* FriendListCoordinator.swift in Sources */,
+				C32882DC26C18C0100CB4E72 /* FriendListCoord.swift in Sources */,
 				C32882DA26C18BE600CB4E72 /* MessageListCoordinator.swift in Sources */,
+				CCACD787284CE6F000FDF228 /* UIResponder+Utils.swift in Sources */,
 				C346FEF326B053AA00646D38 /* SceneDelegate.swift in Sources */,
-				C32882E626C18E1700CB4E72 /* LoginViewModel.swift in Sources */,
+				C32882E626C18E1700CB4E72 /* LoginVM.swift in Sources */,
 				C332D80826B7F82E006D7297 /* MessageModel.swift in Sources */,
 				C346FF1426B056EB00646D38 /* FriendListVC.swift in Sources */,
 				51CE0CA126B9C6B500063875 /* IncomeCell.swift in Sources */,
 				C332D80A26B7F852006D7297 /* UserModel.swift in Sources */,
+				CCACD77C284CB14D00FDF228 /* UINavigationBar.swift in Sources */,
+				CCACD77E284CB65400FDF228 /* Date.swift in Sources */,
 				C34C0F4426B1DC0A00790E92 /* MessageListVC.swift in Sources */,
 				C34C0F4226B1A0EC00790E92 /* DatabaseManager.swift in Sources */,
 			);

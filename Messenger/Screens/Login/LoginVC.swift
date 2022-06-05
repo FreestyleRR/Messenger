@@ -1,18 +1,16 @@
 //
-//  LoginViewController.swift
+//  LoginVC.swift
 //  Messenger
 //
 //  Created by Паша Шарков on 27.07.2021.
 //
 
 import UIKit
-import Firebase
 
 class LoginVC: UIViewController {
+    var viewModel: LoginVM!
     
-    var viewModel: LoginViewModelType!
-    
-    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var nameField: TextFieldView!
     @IBOutlet weak var conteiner: UIView!
     @IBOutlet weak var buttonStart: UIButton!
     
@@ -30,7 +28,11 @@ class LoginVC: UIViewController {
     
     private func setupUI() {
         title = "Log in"
-        view.backgroundColor = .white
+        setupTextField()
+        
+        buttonStart.layer.masksToBounds = true
+        buttonStart.layer.cornerRadius = 12
+        nameField.layer.masksToBounds = true
         nameField.layer.cornerRadius = 12
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -38,6 +40,10 @@ class LoginVC: UIViewController {
         view.addGestureRecognizer(tapGesture)
     }
     
+    private func setupTextField() {
+        nameField.layer.borderWidth = 0.5
+        nameField.layer.borderColor = UIColor.quaternarySystemFill.cgColor
+    }
     
     @objc func dismissKeyboard() {
         view.endEditing(true)

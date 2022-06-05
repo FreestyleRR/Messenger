@@ -1,5 +1,5 @@
 //
-//  LoginCoordinator.swift
+//  LoginCoord.swift
 //  Messenger
 //
 //  Created by Паша Шарков on 09.08.2021.
@@ -8,22 +8,11 @@
 import Foundation
 import UIKit
 
-protocol LoginCoordinatorTransitions: class {
+protocol LoginCoordinatorTransitions: AnyObject {
     func didSignUp()
 }
 
-protocol LoginCoordinatorType {
-    var transitions: LoginCoordinatorTransitions? { get set }
-    
-    var users: [[String: String]] { get set }
-    var currentUserModel: UserModel { get set }
-    
-    func start()
-    func didSignUp()
-}
-
-class LoginCoordinator: LoginCoordinatorType {
-    
+class LoginCoord {
     private weak var navigationController: UINavigationController?
     private weak var controller: LoginVC? = Storyboard.main.instantiateViewController()
     private let rootNavigation = UINavigationController()
@@ -34,11 +23,12 @@ class LoginCoordinator: LoginCoordinatorType {
     
     init(navigationController: UINavigationController?) {
         self.navigationController = navigationController
-        controller?.viewModel = LoginViewModel(self)
+        controller?.viewModel = LoginVM(self)
     }
     
     func start() {
         if let controller = controller {
+            navigationController?.navigationBar.installBlurEffect()
             navigationController?.pushViewController(controller, animated: false)
         }
     }

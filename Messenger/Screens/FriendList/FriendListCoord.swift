@@ -1,5 +1,5 @@
 //
-//  FriendListCoordinator.swift
+//  FriendListCoord.swift
 //  Messenger
 //
 //  Created by Паша Шарков on 09.08.2021.
@@ -7,22 +7,11 @@
 
 import UIKit
 
-protocol FriendListCoordinatorTransitions: class {
+protocol FriendListCoordinatorTransitions: AnyObject {
     func startCommunication()
 }
 
-protocol FriendListCoordinatorType {
-    var transitions: FriendListCoordinatorTransitions? { get set }
-    
-    var friendUserModel: UserModel { get set }
-    var currentUserModel: UserModel { get set }
-    
-    func startCommunication()
-    func start()
-}
-
-class FriendListCoordinator: FriendListCoordinatorType {
-    
+class FriendListCoord {
     private weak var navigationController: UINavigationController?
     private weak var controller = Storyboard.main.controller(withClass: FriendListVC.self)
     weak var transitions: FriendListCoordinatorTransitions?
@@ -32,7 +21,7 @@ class FriendListCoordinator: FriendListCoordinatorType {
     
     init(navigationController: UINavigationController?, users: [[String: String]], currentUserModel: UserModel) {
         self.navigationController = navigationController
-        controller?.viewModel = FriendListViewModel(self, users: users, currentUserModel: currentUserModel)
+        controller?.viewModel = FriendListVM(self, users: users, currentUserModel: currentUserModel)
     }
     
     func start() {

@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol MessageListCoordinatorTransitions: class {
-    
-}
-
 protocol MessageListCoordinatorType {
     func start()
 }
@@ -19,7 +15,6 @@ class MessageListCoordinator: MessageListCoordinatorType {
     
     private weak var navigationController: UINavigationController?
     weak var controller = Storyboard.main.controller(withClass: MessageListVC.self)
-    weak var transitions: MessageListCoordinatorTransitions?
     
     init(navigationController: UINavigationController?, friendModel: UserModel, currentModel: UserModel) {
         self.navigationController = navigationController

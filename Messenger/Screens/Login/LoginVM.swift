@@ -7,21 +7,12 @@
 
 import Foundation
 
-protocol LoginViewModelType {
+class LoginVM {
+    private(set) var coordinator: LoginCoord
+    private(set) var users: [[String: String]] = [[:]]
+    private(set) var currentUserModel = UserModel()
     
-    func getUsers()
-    func isValid(username: String) -> Bool
-    func signUp(username: String, completion: @escaping (() -> Void))
-    func didSignUp()
-}
-
-class LoginViewModel: LoginViewModelType {
-    
-    private var coordinator: LoginCoordinatorType
-    private var users: [[String: String]] = [[:]]
-    private var currentUserModel = UserModel()
-    
-    init(_ coordinator: LoginCoordinatorType) {
+    init(_ coordinator: LoginCoord) {
         self.coordinator = coordinator
     }
     
